@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoingeckoService } from 'src/app/services/coingecko.service';
+import { Coin } from 'src/app/models/coin';
 
 @Component({
   selector: 'app-coin-list',
@@ -7,7 +8,7 @@ import { CoingeckoService } from 'src/app/services/coingecko.service';
   styleUrls: ['./coin-list.component.css']
 })
 export class CoinListComponent implements OnInit {
-  coinList: any[] = [];
+  coinList: Array<Coin> = [];
 
   constructor(private coingeckoService: CoingeckoService) { }
 

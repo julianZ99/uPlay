@@ -1,1 +1,17 @@
-<p>coin-list works!</p>
+<!-- car-list.component.html -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">symbol</th>
+      <th scope="col">name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let coin of coinList">
+      <td>{{ coin.id }}</td>
+      <td>{{ coin.symbol }}</td>
+      <td>{{ coin.name }}</td>
+    </tr>    
+  </tbody>
+</table>
