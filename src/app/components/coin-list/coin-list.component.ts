@@ -15,10 +15,10 @@ export class CoinListComponent implements OnInit {
     this.coingeckoService.getAll()
       .then(response => {
         this.coinList = response;
+        console.log(this.coinList);
       })
       .catch(error => {
         console.log(error);
-      })
-      console.log(this.coinList);
+      }) 
   }
 }
