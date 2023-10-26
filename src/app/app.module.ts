@@ -13,7 +13,7 @@ import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
     AppComponent,
     CoinListComponent,
     LoginComponent,
-    MainmenuComponent
+    MainmenuComponent,
   ],
   imports: [
     BrowserModule,
