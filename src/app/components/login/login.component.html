@@ -1,41 +1,12 @@
 <section class="vh-100 gradient-custom">
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-  <div class="snowflake">
-    <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-  </div>
-    <div class="snowflake">
-      <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-    </div>
-    <div class="snowflake">
-      <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-    </div>
-    <div class="snowflake">
-      <img src="assets/utncoin.svg" width="24" height="24" alt="utncoin">
-    </div>
+  <app-snowflakes></app-snowflakes>
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white">
             <div class="card-body p-5 text-center">
 
-              <div class="form-group">
+              <form [formGroup]="loginForm" clas="form-group">
                 <div class="svg-container">
                   <object data="assets/uplay.svg" type="image/svg+xml">
                     Your browser does not support SVG.
@@ -44,12 +15,9 @@
                 <br>
 
                 <div class="form-outline form-white mb-4">
-                  <input type="email" id="typeEmailX" class="form-control" placeholder="Email" />
+                  <input type="email" id="typeEmailX" formControlName="firstName" class="form-control form-control-ml" required value="" placeholder="Email" />
                   <label class="form-label" for="typeEmailX">Email</label>
-
-
-
-                  <input type="password" id="typePasswordX" class="form-control" placeholder="Password" />
+                  <input type="password" id="typePasswordX" formControlName="firstName" class="form-control form-control-ml" required value="" placeholder="Password" />
                   <label class="form-label" for="typePasswordX">Password</label>
                 </div>
 
@@ -59,7 +27,7 @@
                   <button class="btn btn-warning btn-lg btn-block" type="submit">Login</button>
                 </div>
 
-              </div>
+              </form>
 
               <div>
                 <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
