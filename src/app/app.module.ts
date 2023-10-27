@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { SnowflakesComponent } from './components/snowflakes/snowflakes.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SnowflakesComponent } from './components/snowflakes/snowflakes.componen
     LoginComponent,
     MainmenuComponent,
     SnowflakesComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

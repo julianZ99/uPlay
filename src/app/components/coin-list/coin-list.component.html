@@ -1,17 +1,25 @@
-<!-- car-list.component.html -->
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">symbol</th>
-      <th scope="col">name</th>
+      <th scope="col">#</th>
+      <th scope="col">Coin</th>
+      <th scope="col">Price</th>
+      <th scope="col">Volume</th>
+      <th scope="col">Price Change (24h)</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let coin of coinList">
-      <td>{{ coin.id }}</td>
-      <td>{{ coin.symbol }}</td>
-      <td>{{ coin.name }}</td>
-    </tr>    
+      <td>{{ coin.market_cap_rank }}</td>
+      <td>
+        <span class="text-secondary">{{ coin.symbol }}</span> {{ coin.name }}
+        <img [src]="coin.image" alt="{{ coin.name }}" width="30" height="30">
+      </td>      
+      <td>${{ coin.current_price | number: '1.2-2' }}</td>
+      <td>${{ coin.total_volume | number: '1.2-2' }}</td>
+      <td [ngClass]="{'text-success': coin.price_change_24h >= 0, 'text-danger': coin.price_change_24h < 0}">
+        {{ coin.price_change_24h | number: '1.2-2' }} ({{ coin.price_change_percentage_24h | number: '1.2-2' }}%)
+      </td>
+    </tr>
   </tbody>
 </table>

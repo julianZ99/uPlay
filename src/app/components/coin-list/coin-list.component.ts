@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CoingeckoService } from 'src/app/services/coingecko.service';
-import { Coin } from 'src/app/models/coin';
 
 @Component({
   selector: 'app-coin-list',
@@ -8,18 +7,24 @@ import { Coin } from 'src/app/models/coin';
   styleUrls: ['./coin-list.component.css']
 })
 export class CoinListComponent implements OnInit {
-  coinList: Array<Coin> = [];
+  coinList: any[] = [];
 
-  constructor(private coingeckoService: CoingeckoService) { }
+  constructor(private coingeckoService: CoingeckoService) {}
 
   ngOnInit() {
-    this.coingeckoService.getAll()
-      .then(response => {
-        this.coinList = response;
-        console.log(this.coinList);
-      })
-      .catch(error => {
-        console.log(error);
-      }) 
+    this.getCryptocurrencyList();
   }
+
+  getCryptocurrencyList() {
+    this.coingeckoService.getCryptocurrencyList()
+      .subscribe(
+        (data: any[]) => {
+          this.coinList = data;
+        },
+        (error) => {
+          console.error('Error fetching cryptocurrency data:', error);
+        }
+      );
+  }
+  
 }
