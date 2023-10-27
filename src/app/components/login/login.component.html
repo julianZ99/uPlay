@@ -6,14 +6,11 @@
           <div class="card bg-dark text-white">
             <div class="card-body p-5 text-center">
 
+              <a (click)="navigateToHome()" class="click-container">
+                <app-floating-logo></app-floating-logo>
+              </a>
+              <br>
               <form [formGroup]="loginForm" clas="form-group">
-                <div class="svg-container">
-                  <object data="assets/uplay.svg" type="image/svg+xml">
-                    Your browser does not support SVG.
-                  </object>
-                </div>
-                <br>
-
                 <div class="form-outline form-white mb-4">
                   <input type="email" id="typeEmailX" formControlName="firstName" class="form-control form-control-ml" required value="" placeholder="Email" />
                   <label class="form-label" for="typeEmailX">Email</label>
@@ -24,9 +21,8 @@
                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
                 <div class="pt-1 mb-4">
-                  <button class="btn btn-warning btn-lg btn-block" type="submit">Login</button>
+                  <button class="btn btn-warning btn-lg btn-block" type="submit" (click)="navigateToMainPage()">Login</button>
                 </div>
-
               </form>
 
               <div>
@@ -39,5 +35,4 @@
         </div>
       </div>
     </div>
-
 </section>

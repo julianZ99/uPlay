@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,5 +16,13 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  
+  constructor(private router: Router) {}
+
+  navigateToHome() {
+    this.router.navigate(['/']); 
+  }
+
+  navigateToMainPage() {
+    this.router.navigate(['/main-page']); 
+  }
 }

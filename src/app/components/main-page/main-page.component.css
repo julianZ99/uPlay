@@ -1,20 +1,14 @@
-.container {
-    margin-top: 52px;
+.bg-gray {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    -webkit-backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px); 
+  }
+  .nav-scroller {
+    margin-top: 60px;
 }
-
-.left-half {
-    float: left;
-    margin: 0; 
-    padding: 0; 
-    overflow-y: auto;
-}
-
-.left-content {
-    height: 100%; 
-}
-
-.right-half {
-    float: right;
-    justify-content: center;
-    align-items: center;
-}
+html, body {
+    overflow: hidden;
+  }

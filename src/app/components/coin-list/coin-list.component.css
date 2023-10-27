@@ -1,0 +1,53 @@
+.table-container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.scrollable-body {
+    display: block;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead {
+    table-layout: fixed;
+}
+
+.column-5 {
+    width: 5%;
+}
+
+.column-20 {
+    width: 20%;
+}
+
+.column-15 {
+    width: 15%;
+}
+
+.column-25 {
+    width: 25%;
+}
+
+.scrollable-body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.scrollable-body::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.scrollable-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollable-body {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}

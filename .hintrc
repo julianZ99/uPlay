@@ -8,9 +8,18 @@
       {
         "ignore": [
           "text-decoration-skip-ink",
-          "overflow-anchor"
+          "overflow-anchor",
+          "scrollbar-width",
+          "scrollbar-color"
         ]
       }
     ]
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 118",
+    "not firefox <= 118",
+    "not safari <= 17"
+  ]
 }

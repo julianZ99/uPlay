@@ -4,8 +4,10 @@
   animation: gradient 20s ease infinite;
 }
 
-.svg-container{
-  z-index: -1;
+
+
+.click-container{
+  cursor: pointer;
 }
 
 @keyframes gradient {
@@ -30,4 +32,3 @@
 .btn {
   width: 100%;
 }
-
