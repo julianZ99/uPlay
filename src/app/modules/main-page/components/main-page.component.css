@@ -1,0 +1,6 @@
+.nav-scroller {
+    margin-top: 60px;
+}
+html, body {
+    overflow: hidden;
+  }

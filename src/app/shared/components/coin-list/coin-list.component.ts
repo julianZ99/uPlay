@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoingeckoService } from 'src/app/services/coingecko.service';
+import { CoingeckoService } from 'src/app/core/services/coingecko/coingecko.service';
 import { Observer } from 'rxjs';
 
 @Component({

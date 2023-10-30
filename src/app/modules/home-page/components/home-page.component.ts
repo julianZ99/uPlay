@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomePageModule } from '../home-page.module';
 
 @Component({
   selector: 'app-home-page',
