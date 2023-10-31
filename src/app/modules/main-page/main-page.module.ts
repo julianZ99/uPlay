@@ -9,7 +9,8 @@ import { MainPageComponent } from './components/main-page.component';
 @NgModule({
   declarations: [MainPageComponent],
   imports: [
-    CommonModule, 
+    CommonModule,
+    MainPageRoutingModule, 
     SharedModule,
   ]
 })

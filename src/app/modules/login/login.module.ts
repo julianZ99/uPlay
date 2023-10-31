@@ -15,4 +15,7 @@ import { LoginComponent } from './components/login.component';
     ReactiveFormsModule
   ]
 })
-export class LoginModule { }
+export class LoginModule {
+
+}
+console.log('asdasd');

@@ -6,11 +6,11 @@ const routes: Routes = [
   loadChildren: () => import('./modules/home-page/home-page.module').then((m) => m.HomePageModule),
 },
   {
-    path: 'login',
+    path: '',
     loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'main-page',
+    path: '',
     loadChildren: () => import('./modules/main-page/main-page.module').then((m) => m.MainPageModule),
   },
 ];

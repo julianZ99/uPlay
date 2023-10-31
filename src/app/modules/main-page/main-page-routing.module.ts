@@ -8,5 +8,6 @@ const mainPageRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(mainPageRoutes)],
+  exports: [RouterModule]
 })
 export class MainPageRoutingModule { }
