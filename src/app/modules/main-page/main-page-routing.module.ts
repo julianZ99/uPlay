@@ -1,0 +1,13 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MainPageComponent } from './components/main-page.component';
+
+const mainPageRoutes: Routes = [
+  { path: 'main-page', component: MainPageComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(mainPageRoutes)],
+  exports: [RouterModule]
+})
+export class MainPageRoutingModule { }

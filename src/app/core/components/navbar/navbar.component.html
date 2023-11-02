@@ -1,0 +1,8 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="assets/uplay.svg" alt="uPlayLogo" width="100" height="40">
+        </a>
+        <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
+    </div>
+</nav>

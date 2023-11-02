@@ -1,0 +1,57 @@
+.table-container {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+}
+
+thead {
+    table-layout: fixed;
+    flex: 0 0 auto;
+}
+
+.scrollable-body {
+    flex: 1;
+    display: block;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+.column-5 {
+    width: 5%;
+}
+
+.column-20 {
+    width: 20%;
+}
+
+.column-15 {
+    width: 15%;
+}
+
+.column-25 {
+    width: 25%;
+}
+
+.scrollable-body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.scrollable-body::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.scrollable-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollable-body {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
