@@ -10,7 +10,7 @@ import { Observer } from 'rxjs';
 export class CoinListComponent implements OnInit {
   coinList: any[] = [];
 
-  constructor(private coingeckoService: CoingeckoService) {}
+  constructor(private coingeckoService: CoingeckoService) { }
 
   ngOnInit() {
     this.getCryptocurrencyList();
@@ -25,11 +25,10 @@ export class CoinListComponent implements OnInit {
         console.error('Error fetching cryptocurrency data:', error);
       },
       complete: () => {
-
+        console.log('Criptocurrency prices list obtained successfully');
       },
     };
 
     this.coingeckoService.getCryptocurrencyList().subscribe(observer);
-    
   }
 }
