@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
+import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { LoginComponent } from './components/login.component';
 
@@ -10,6 +11,7 @@ import { LoginComponent } from './components/login.component';
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    CoreModule,
     LoginRoutingModule,
     SharedModule,
     ReactiveFormsModule
@@ -18,4 +20,3 @@ import { LoginComponent } from './components/login.component';
 export class LoginModule {
 
 }
-console.log('asdasd');

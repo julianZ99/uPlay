@@ -1,12 +1,19 @@
 .table-container {
-    height: 100vh;
     overflow: hidden;
+    display: flex;
+    height: 100%;
+}
+
+thead {
+    table-layout: fixed;
+    flex: 0 0 auto;
 }
 
 .scrollable-body {
+    flex: 1;
     display: block;
-    max-height: calc(100vh - 100px);
     overflow-y: auto;
+    max-height: 100vh;
 }
 
 tr {
@@ -15,9 +22,6 @@ tr {
     table-layout: fixed;
 }
 
-thead {
-    table-layout: fixed;
-}
 
 .column-5 {
     width: 5%;

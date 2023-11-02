@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class HomePageComponent {
+export class NavbarComponent {
   constructor(private router: Router) {}
+
+  isLoggedIn: boolean = false;
 
   navigateToLogin() {
     this.router.navigate(['/login']);

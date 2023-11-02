@@ -13,7 +13,8 @@
           "scrollbar-color"
         ]
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   },
   "browserslist": [
     "defaults",
