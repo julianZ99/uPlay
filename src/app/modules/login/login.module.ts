@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-
 import { LoginComponent } from './components/login.component';
 
 @NgModule({

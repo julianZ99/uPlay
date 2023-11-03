@@ -1,39 +1,45 @@
-
 <section class="vh-100 gradient-custom">
   <app-snowflakes></app-snowflakes>
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white">
-            <div class="card-body p-5 text-center">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white">
+          <div class="card-body p-5 text-center">
 
-              <a (click)="navigateToHome()" class="click-container">
-                <app-floating-logo></app-floating-logo>
-              </a>
-              <br>
-              <form [formGroup]="loginForm" clas="form-group">
-                <div class="form-outline form-white mb-4">
-                  <input type="email" id="typeEmailX" formControlName="firstName" class="form-control form-control-ml" required value="" placeholder="Email" />
-                  <label class="form-label" for="typeEmailX">Email</label>
-                  <input type="password" id="typePasswordX" formControlName="firstName" class="form-control form-control-ml" required value="" placeholder="Password" />
-                  <label class="form-label" for="typePasswordX">Password</label>
-                </div>
-
-                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                <div class="pt-1 mb-4">
-                  <button class="btn btn-warning btn-lg btn-block" type="submit" (click)="navigateToMainPage()">Login</button>
-                </div>
-              </form>
-
-              <div>
-                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
-                </p>
+            <a (click)="navigateToHome()" class="click-container">
+              <app-floating-logo></app-floating-logo>
+            </a>
+            <br>
+            <form [formGroup]="loginForm" class="form-group">
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="typeEmailX" formControlName="username" class="form-control form-control-ml"
+                  placeholder="Email" />
+                <label class="form-label" for="typeEmailX">Email</label>
+                <input type="password" id="typePasswordX" formControlName="password"
+                  class="form-control form-control-ml" placeholder="Password" />
+                <label class="form-label" for="typePasswordX">Password</label>
               </div>
 
+              <div *ngIf="showAlert" class="alert alert-warning">
+                {{alertMessage}}
+              </div>
+
+              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+
+              <div class="pt-1 mb-4">
+                <button class="btn btn-warning btn-lg btn-block" type="submit"
+                  (click)="navigateToMainPage()">Login</button>
+              </div>
+            </form>
+
+            <div>
+              <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+              </p>
             </div>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
 </section>
