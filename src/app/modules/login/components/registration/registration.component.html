@@ -1,0 +1,43 @@
+<section class="vh-100 gradient-custom">
+    <app-snowflakes></app-snowflakes>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white">
+                    <div class="card-body p-5 text-center">
+
+                        <a (click)="navigateToHome()" class="click-container">
+                            <app-floating-logo></app-floating-logo>
+                        </a>
+                        <br>
+                        <form [formGroup]="registrationForm" class="form-group">
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="typePasswordX">Nombre</label>
+                                <input type="text" id="typeNameX" formControlName="name"
+                                    class="form-control form-control-ml" placeholder="Nombre" />
+                                <label class="form-label" for="typeEmailX">Apellido</label>
+                                <input type="text" id="typeEmailX" formControlName="lastname"
+                                    class="form-control form-control-ml" placeholder="Apellido" />
+                                <label class="form-label" for="typeEmailX">Email</label>
+                                <input type="email" id="typeEmailX" formControlName="username"
+                                    class="form-control form-control-ml" placeholder="Email" />
+                                <label class="form-label" for="typeEmailX">Contraseña</label>
+                                <input type="password" id="typePasswordX" formControlName="password"
+                                    class="form-control form-control-ml" placeholder="Password" />
+                                <label class="form-label" for="typePasswordX">Confirma tu contraseña</label>
+                                <input type="contraseña" id="typeConfirmationPasswordX"
+                                    formControlName="confirmationPassword" class="form-control form-control-ml"
+                                    placeholder="Confirma tu contraseña" />
+                            </div>
+
+                            <div class="pt-1 mb-4">
+                                <button class="btn btn-warning btn-lg btn-block" type="submit"
+                                    (click)="navigateToHome()">Registrarse</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
