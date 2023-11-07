@@ -2,7 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UplayService } from 'src/app/uplay.service';
+import { UplayService } from 'src/app/core/services/uplay/uplay.service';
+
 
 @Component({
     selector: 'app-login',
@@ -30,6 +31,10 @@ export class LoginComponent {
 
     navigateToHome() {
         this.router.navigate(['/']);
+    }
+
+    navigateToRegistration() {
+        this.router.navigate(['/registration']);
     }
 
     navigateToMainPage() {
