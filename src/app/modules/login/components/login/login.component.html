@@ -12,12 +12,12 @@
             <br>
             <form [formGroup]="loginForm" class="form-group">
               <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typeEmailX">Email</label>
                 <input type="email" id="typeEmailX" formControlName="username" class="form-control form-control-ml"
                   placeholder="Email" />
-                <label class="form-label" for="typeEmailX">Email</label>
+                <label class="form-label" for="typePasswordX">Password</label>
                 <input type="password" id="typePasswordX" formControlName="password"
                   class="form-control form-control-ml" placeholder="Password" />
-                <label class="form-label" for="typePasswordX">Password</label>
               </div>
 
               <div *ngIf="showAlert" class="alert alert-warning">
@@ -33,7 +33,8 @@
             </form>
 
             <div>
-              <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+              <p class="mb-0">Don't have an account? 
+                <span class="text-white-50 fw-bold" (click)="navigateToRegistration()">Sign Up</span>
               </p>
             </div>
 
