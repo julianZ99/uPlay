@@ -42,7 +42,6 @@ export class LoginComponent {
         let password = this.loginForm.get('password')?.value;
         this.uplayService.login(username, password).subscribe(
             (response) => {
-                console.log(response);
                 if (response && response.name) {
                     console.log("entre 200");
                     this.router.navigate(['/main-page']);
