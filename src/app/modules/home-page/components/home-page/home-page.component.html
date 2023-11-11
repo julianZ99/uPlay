@@ -1,21 +1,5 @@
 <app-navbar></app-navbar>
 
-<main>
-  <div  class="container-fluid">
-  <div class="content">
-    <app-coin-list></app-coin-list>
-  </div>
-  <div class="content" *ngIf="isLoggedIn; else notLoggedInContent">
-    
-    
-  </div>
-
-  <ng-template #notLoggedInContent>
-    <div class="content">
-      <app-animation></app-animation>
-    </div>
-  </ng-template>
-</div>
-</main>
+<router-outlet></router-outlet>
 
 <app-footer></app-footer>

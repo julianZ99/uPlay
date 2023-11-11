@@ -23,6 +23,18 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
   }
 
+  navigateToCoins() {
+    this.router.navigate(['/coins']);
+  }
+
+  navigateToGames() {
+    this.router.navigate(['/games']);
+  }
+
+  navigateToRankings() {
+    this.router.navigate(['/ranking']);
+  }
+
   checkLoginStatus() {
     this.authStatusService.getAuthenticatedUser().subscribe(
       (user: any | null) => {

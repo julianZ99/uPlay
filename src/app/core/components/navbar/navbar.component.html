@@ -1,28 +1,17 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="assets/uplay.svg" alt="uPlayLogo" width="100" height="40">
-        </a>
-        <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Coins <span class="sr-only">(current)</span></a>
-            </li>
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand" href="#">
+        <img src="assets/uplay.svg" alt="uPlayLogo" width="100" height="40">
+      </a>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
+      <div *ngIf="isLoggedIn" class="d-flex flex-row align-items-center navbar-nav">
+        <a class="nav-item nav-link ms-3" (click)="navigateToCoins()">Coins</a>
+        <a class="nav-item nav-link ms-3" (click)="navigateToGames()">Juegos</a>
+        <a class="nav-item nav-link ms-3" (click)="navigateToRankings()">Ranking</a>
+      </div>
     </div>
+
+    <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
+  </div>
 </nav>
