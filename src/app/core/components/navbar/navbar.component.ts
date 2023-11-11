@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +8,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authStatusService: AuthStatusService
+  ) { }
 
   isLoggedIn: boolean = false;
 
+  ngOnInit() {
+    this.checkLoginStatus();
+  }
+
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  navigateToCoins() {
+    this.router.navigate(['/coins']);
+  }
+
+  navigateToGames() {
+    this.router.navigate(['/games']);
+  }
+
+  navigateToRankings() {
+    this.router.navigate(['/ranking']);
+  }
+
+  checkLoginStatus() {
+    this.authStatusService.getAuthenticatedUser().subscribe(
+      (user: any | null) => {
+        this.isLoggedIn = !!user;
+        console.log('navbar. User is logged:', this.isLoggedIn);
+      },
+      (error: any) => {
+        console.error('navbar. Error checking login status:', error);
+      }
+    );
   }
 
 }

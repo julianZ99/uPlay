@@ -18,7 +18,7 @@ export class CoinListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.checkLoginStatus(); // Move checkLoginStatus to ngOnInit
+    this.checkLoginStatus();
     this.getCryptocurrencyList();
   }
 
@@ -46,10 +46,10 @@ export class CoinListComponent implements OnInit {
     this.authStatusService.getAuthenticatedUser().subscribe(
       (user: any | null) => {
         this.isLoggedIn = !!user;
-        console.log('User is logged:', this.isLoggedIn);
+        console.log('coinlist. User is logged:', this.isLoggedIn);
       },
       (error: any) => {
-        console.error('Error checking login status:', error);
+        console.error('coinlist. Error checking login status:', error);
       }
     );
   }
