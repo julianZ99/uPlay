@@ -17,8 +17,9 @@ export class CoinListComponent implements OnInit {
   ngOnInit() {
     this.getCryptocurrencyList();
     this.isLoggedIn=true;   //FALTA LOGICA DE VERIFICACION USUARIO LOGUEADO
+    console.log('usuario logueado', this.isLoggedIn);
   }
-  
+
   onRowClick(coin: any) {
     console.log('Row clicked:', coin);
   };

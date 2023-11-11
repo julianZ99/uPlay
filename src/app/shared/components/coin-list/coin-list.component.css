@@ -14,6 +14,8 @@ thead {
     display: block;
     overflow-y: auto;
     max-height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 }
 
 tr {
@@ -21,6 +23,10 @@ tr {
     width: 100%;
     table-layout: fixed;
 }
+
+.table-hover > tbody > tr:hover {
+    background-color: #D2D2D2;
+  }
 
 
 .column-5 {
@@ -51,7 +57,3 @@ tr {
     background: transparent;
 }
 
-.scrollable-body {
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-}
