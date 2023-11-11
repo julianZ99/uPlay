@@ -10,11 +10,18 @@ import { Observer } from 'rxjs';
 export class CoinListComponent implements OnInit {
   coinList: any[] = [];
 
+  isLoggedIn: boolean = false;
+
   constructor(private coingeckoService: CoingeckoService) {}
 
   ngOnInit() {
     this.getCryptocurrencyList();
+    this.isLoggedIn=true;   //FALTA LOGICA DE VERIFICACION USUARIO LOGUEADO
   }
+  
+  onRowClick(coin: any) {
+    console.log('Row clicked:', coin);
+  };
 
   getCryptocurrencyList() {
     const observer: Observer<any[]> = {
@@ -28,6 +35,8 @@ export class CoinListComponent implements OnInit {
 
       },
     };
+
+
 
     this.coingeckoService.getCryptocurrencyList().subscribe(observer);
     

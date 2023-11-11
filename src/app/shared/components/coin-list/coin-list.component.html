@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody class="scrollable-body">
-      <tr *ngFor="let coin of coinList">
+      <tr *ngFor="let coin of coinList " (click)="isLoggedIn ? onRowClick(coin) : null">
         <td class="column-5">{{ coin.market_cap_rank }}</td>
         <td class="column-20">
           <span class="text-secondary">{{ coin.symbol }}</span> {{ coin.name }}
