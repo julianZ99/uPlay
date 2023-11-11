@@ -44,7 +44,7 @@ export class LoginComponent {
             (response) => {
                 if (response && response.name) {
                     console.log("entre 200");
-                    this.router.navigate(['/main-page']);
+                    this.router.navigate(['/']);
                 }else{
                     console.log("entre 204");
                     this.showAlert = true;
