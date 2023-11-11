@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoingeckoService } from 'src/app/core/services/coingecko/coingecko.service';
 import { Observer } from 'rxjs';
+import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 
 @Component({
   selector: 'app-coin-list',
@@ -9,11 +10,20 @@ import { Observer } from 'rxjs';
 })
 export class CoinListComponent implements OnInit {
   coinList: any[] = [];
+  isLoggedIn: boolean = false;
 
-  constructor(private coingeckoService: CoingeckoService) {}
+  constructor(
+    private coingeckoService: CoingeckoService,
+    private authStatusService: AuthStatusService
+  ) {}
 
   ngOnInit() {
+    this.checkLoginStatus(); // Move checkLoginStatus to ngOnInit
     this.getCryptocurrencyList();
+  }
+
+  onRowClick(coin: any) {
+    console.log('Row clicked:', coin);
   }
 
   getCryptocurrencyList() {
@@ -25,11 +35,22 @@ export class CoinListComponent implements OnInit {
         console.error('Error fetching cryptocurrency data:', error);
       },
       complete: () => {
-
+        // NADA
       },
     };
 
     this.coingeckoService.getCryptocurrencyList().subscribe(observer);
-    
+  }
+
+  checkLoginStatus() {
+    this.authStatusService.getAuthenticatedUser().subscribe(
+      (user: any | null) => {
+        this.isLoggedIn = !!user;
+        console.log('User is logged:', this.isLoggedIn);
+      },
+      (error: any) => {
+        console.error('Error checking login status:', error);
+      }
+    );
   }
 }
