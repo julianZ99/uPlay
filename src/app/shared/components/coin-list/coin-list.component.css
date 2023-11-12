@@ -12,9 +12,9 @@ thead {
 .scrollable-body {
     flex: 1;
     display: block;
-    overflow-y: auto;
+    overflow-y: scroll;
     max-height: 100vh;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     scrollbar-color: transparent transparent;
 }
 
@@ -46,7 +46,7 @@ tr {
 }
 
 .scrollable-body::-webkit-scrollbar {
-    width: 0.5em;
+    width: 0px;
 }
 
 .scrollable-body::-webkit-scrollbar-thumb {
