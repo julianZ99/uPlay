@@ -1,0 +1,59 @@
+
+.details-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.coin-image {
+    border-radius: 50%;
+    width: 80px; 
+    height: 80px;
+    margin-right: 10px;
+}
+
+.title-info {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.text-white {
+    color: white;
+}
+
+.prices{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    margin: 10px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.description-container {
+    margin-top: 20px;
+}
+
+.glass-background {
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+
+.description-content {
+    overflow-y: auto;
+    margin: 0;
+}
