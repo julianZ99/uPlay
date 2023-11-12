@@ -1,0 +1,17 @@
+<div *ngIf="coinDetails">
+    <h2>{{ coinDetails.name }}</h2>
+    <div>
+      <img [src]="coinDetails.image.large" alt="{{ coinDetails.name }}" width="100" height="100">
+    </div>
+    <p>Description: {{ coinDetails.description.en }}</p>
+    <p>Current Price (USD): ${{ coinDetails.market_data.current_price.usd | number: '1.2-2' }}</p>
+    <p>Current Price (ARS): ${{ coinDetails.market_data.current_price.ars | number: '1.2-2' }}</p>
+  
+    
+    <div>
+      <p>Homepage: <a href="{{ coinDetails.links.homepage[0] }}" target="_blank">{{ coinDetails.links.homepage[0] }}</a></p>
+      <p>Reddit: <a href="{{ coinDetails.links.subreddit_url }}" target="_blank">{{ coinDetails.links.subreddit_url }}</a></p>
+    
+    </div>
+  </div>
+  

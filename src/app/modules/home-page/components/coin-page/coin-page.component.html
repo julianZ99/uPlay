@@ -4,8 +4,7 @@
       <app-coin-list></app-coin-list>
     </div>
     <div class="content" *ngIf="isLoggedIn; else notLoggedInContent">
-      
-      
+      <app-details></app-details>
     </div>
   
     <ng-template #notLoggedInContent>

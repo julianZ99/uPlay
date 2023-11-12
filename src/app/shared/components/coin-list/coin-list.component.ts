@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoingeckoService } from 'src/app/core/services/coingecko/coingecko.service';
 import { Observer } from 'rxjs';
 import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
+import { SharedCoinService } from 'src/app/core/services/shared-coin/shared-coin.service';
 
 @Component({
   selector: 'app-coin-list',
@@ -12,9 +13,11 @@ export class CoinListComponent implements OnInit {
   coinList: any[] = [];
   isLoggedIn: boolean = false;
 
+
   constructor(
     private coingeckoService: CoingeckoService,
-    private authStatusService: AuthStatusService
+    private authStatusService: AuthStatusService,
+    private sharedCoinService: SharedCoinService
   ) {}
 
   ngOnInit() {
@@ -24,6 +27,7 @@ export class CoinListComponent implements OnInit {
 
   onRowClick(coin: any) {
     console.log('Row clicked:', coin);
+    this.sharedCoinService.setSelectedCoin(coin);
   }
 
   getCryptocurrencyList() {
