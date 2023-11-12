@@ -1,7 +1,10 @@
-
 .details-container {
     max-width: 800px;
-    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
 }
 
 .title-container {
@@ -17,6 +20,11 @@
     margin-right: 10px;
 }
 
+.coin-name{
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
 .title-info {
     display: flex;
     flex-grow: 1;
@@ -28,14 +36,15 @@
     color: white;
 }
 
-.prices{
+.prices-content {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
 .price {
     margin: 10px;
+    font-weight: bold;
 }
 
 .links {
@@ -46,14 +55,12 @@
 
 .description-container {
     margin-top: 20px;
-}
-
-.glass-background {
-    backdrop-filter: blur(10px);
-    padding: 10px;
+    flex: 1; 
+    overflow: hidden;
 }
 
 .description-content {
-    overflow-y: auto;
-    margin: 0;
+    flex: 1;
+    display: block;
+    overflow: visible;
 }
