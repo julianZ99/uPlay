@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouletteComponent } from './roulette/roulette.component';
+import { SlotComponent } from './slot/slot.component';
 
 
 
 @NgModule({
   declarations: [
-    RouletteComponent
+    SlotComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+  ],
+  providers: [
+  
   ],
   exports: [
-    RouletteComponent
+    SlotComponent
   ]
 })
 export class GamesModule { }

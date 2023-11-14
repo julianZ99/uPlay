@@ -1,0 +1,32 @@
+<p>Welcome, {{ authenticatedUser?.name }}!</p>
+<p>Your current coin balance: {{ coinBalance }}</p>
+<p>Cost to play: {{ playCost }}</p>
+
+<p *ngIf="isWinner !== null">
+  {{ isWinner ? 'Congratulations! You won!' : 'Better luck next time!' }}
+  {{ isWinner ? 'You earned ' + rewardCoins + ' coins!' : '' }}
+</p>
+<div class="game-area">
+  <div
+    class="card"
+    *ngFor="let card of cards, let i = index"
+    [@cardSpinner]="card.state"
+    [style.background]="card.color"
+    [class.visible]="card.state === 'in' && isEnded"
+  >
+    <p style="font-size: 36px; text-align: center;">
+      {{ card.value }}
+    </p>
+  </div>
+  
+</div>
+
+<button
+  type="button"
+  class="spin-btn green-btn"
+  aria-label="Spin"
+  (click)="animateSpin()"
+>
+  <span>S P I N</span>
+</button>
+

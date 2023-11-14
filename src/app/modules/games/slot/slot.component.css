@@ -1,0 +1,30 @@
+.game-area {
+  box-sizing: border-box;
+  position: relative;
+  height: 80px;
+  width: 80px;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+.game-area .card {
+  bottom: 0;
+  box-sizing: border-box;
+  height: 80px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 80px;
+
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  line-height: 2.3;
+  color: black;
+}
+
+.visible {
+  transform: translateY(0) !important;
+}
