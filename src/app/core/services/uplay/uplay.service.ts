@@ -37,9 +37,10 @@ export class UplayService {
     return this.http.get<number>(url);
   }
   
-  updateCoinBalance(userId: string, newBalance: number): Observable<any> {
-    const url = `${this.apiUplayURL}/users/update-coin-balance`;
-
-    return this.http.post(url, { userId, newBalance });
+  updateCoinBalance(userId: number, newBalance: number): Observable<any> {
+    const url = `${this.apiUplayURL}/users/update-coin-balance/${userId}`;
+    const params = { newCoinBalance: newBalance.toString() };
+  
+    return this.http.put(url, null, { params });
   }
 }

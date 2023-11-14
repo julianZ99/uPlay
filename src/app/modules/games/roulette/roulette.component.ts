@@ -12,7 +12,7 @@ import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 export class RouletteComponent implements OnInit, OnDestroy {
   authenticatedUser: any | null;
   coinBalance!: number;
-  playCost: number = 0; 
+  playCost: number = 100; 
   rewardCoins: number = 50; 
   isWinner: boolean | null = null;
 
