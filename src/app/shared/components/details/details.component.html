@@ -1,19 +1,21 @@
-<div class="details-container">
+<div *ngIf="coinDetails" class="details-container">
   <div class="title-container">
     <div class="title-info">
-      <img [src]="coinDetails.image.large" alt="{{ coinDetails.name }}" class="coin-image">
+      <img [src]="coinDetails?.image?.large" alt="{{ coinDetails?.name }}" class="coin-image">
     </div>
     <div class="links">
-      <p class="text-info"><a href="{{ coinDetails.links.homepage[0] }}" target="_blank">{{
-          coinDetails.links.homepage[0] }}</a></p>
-      <p *ngIf="coinDetails.links.subreddit_url && coinDetails.links.subreddit_url !== 'https://www.reddit.com'">
-        <a href="{{ coinDetails.links.subreddit_url }}" target="_blank">{{ coinDetails.links.subreddit_url }}</a>
+      <p class="text-info">
+        <a href="{{ coinDetails?.links?.homepage[0] }}" target="_blank">{{ coinDetails?.links?.homepage[0] }}</a>
+      </p>
+      <p *ngIf="coinDetails?.links?.subreddit_url && coinDetails?.links?.subreddit_url !== 'https://www.reddit.com'">
+        <a href="{{ coinDetails?.links?.subreddit_url }}" target="_blank">{{ coinDetails?.links?.subreddit_url }}</a>
+      </p>
     </div>
   </div>
   <div class="description-container">
-    <h2 class="coin-name text-white">{{ coinDetails.name }}</h2>
+    <h2 class="coin-name text-white">{{ coinDetails?.name }}</h2>
     <div class="description-content">
-      <p [innerHTML]="coinDetails.description.en" class="text-white"></p>
+      <p [innerHTML]="coinDetails?.description?.en" class="text-white"></p>
     </div>
   </div>
   <div class="prices-container">
@@ -22,9 +24,9 @@
     </div>
     <div class="prices-content">
       <p class="price text-warning">USD: </p>
-      <p class="price text-success">${{ coinDetails.market_data.current_price.usd | number: '1.2-2' }}</p>
+      <p class="price text-success">${{ coinDetails?.market_data?.current_price?.usd | number: '1.2-2' }}</p>
       <p class="price text-warning">ARS: </p>
-      <p class="price text-success">${{ coinDetails.market_data.current_price.ars | number: '1.2-2' }}</p>
+      <p class="price text-success">${{ coinDetails?.market_data?.current_price?.ars | number: '1.2-2' }}</p>
     </div>
   </div>
 </div>
