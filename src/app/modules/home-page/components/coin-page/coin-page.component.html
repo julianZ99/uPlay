@@ -1,0 +1,16 @@
+<main>
+    <div  class="container-fluid">
+    <div class="content">
+      <app-coin-list></app-coin-list>
+    </div>
+    <div class="content" *ngIf="isLoggedIn; else notLoggedInContent">
+      <app-details></app-details>
+    </div>
+  
+    <ng-template #notLoggedInContent>
+      <div class="content">
+        <app-animation></app-animation>
+      </div>
+    </ng-template>
+  </div>
+</main>

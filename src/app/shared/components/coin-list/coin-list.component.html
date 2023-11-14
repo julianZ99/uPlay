@@ -1,5 +1,5 @@
-<div class="table-container">
-  <table class="table table-striped">
+<div class="table-responsive">
+  <table class="table table-dark" [ngClass]="{'table-hover': isLoggedIn}">
     <thead>
       <tr>
         <th class="column-5">#</th>
@@ -10,15 +10,16 @@
       </tr>
     </thead>
     <tbody class="scrollable-body">
-      <tr *ngFor="let coin of coinList">
+      <tr *ngFor="let coin of coinList " (click)="isLoggedIn ? onRowClick(coin) : null">
         <td class="column-5">{{ coin.market_cap_rank }}</td>
         <td class="column-20">
           <span class="text-secondary">{{ coin.symbol }}</span> {{ coin.name }}
           <img [src]="coin.image" alt="{{ coin.name }}" width="30" height="30">
         </td>
-        <td class="column-15">${{ coin.current_price | number: '1.2-2' }}</td>
-        <td class="column-20">${{ coin.total_volume | number: '1.2-2' }}</td>
-        <td class="column-25" [ngClass]="{'text-success': coin.price_change_24h >= 0, 'text-danger': coin.price_change_24h < 0}">
+        <td class="column-15">{{ coin.current_price | currency }}</td>
+        <td class="column-20">{{ coin.total_volume | currency }}</td>
+        <td class="column-25"
+          [ngClass]="{'text-success': coin.price_change_24h >= 0, 'text-danger': coin.price_change_24h < 0}">
           {{ coin.price_change_24h | number: '1.2-2' }} ({{ coin.price_change_percentage_24h | number: '1.2-2' }}%)
         </td>
       </tr>

@@ -1,0 +1,66 @@
+.details-container {
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.coin-image {
+    border-radius: 50%;
+    width: 80px; 
+    height: 80px;
+    margin-right: 10px;
+}
+
+.coin-name{
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.title-info {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.text-white {
+    color: white;
+}
+
+.prices-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.price {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.description-container {
+    margin-top: 20px;
+    flex: 1; 
+    overflow: hidden;
+}
+
+.description-content {
+    flex: 1;
+    display: block;
+    overflow: visible;
+}

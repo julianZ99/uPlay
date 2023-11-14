@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
+import { SharedCoinService } from 'src/app/core/services/shared-coin/shared-coin.service';
 
 import { AppComponent } from './app.component';;
 
@@ -13,8 +15,8 @@ import { AppComponent } from './app.component';;
     HttpClientModule,
     NgbModule,
     AppRoutingModule,
+    CoreModule
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -50,26 +50,40 @@ export class RegistrationComponent {
   }
 
   navigateToHome() {
-    if (this.registrationForm.valid) {
-      const name = this.registrationForm.get('name')?.value;
-      const lastName = this.registrationForm.get('lastname')?.value;
-      const email = this.registrationForm.get('email')?.value;
-      const password = this.registrationForm.get('password')?.value;
+    const name = this.registrationForm.get('name')?.value;
+    const lastName = this.registrationForm.get('lastname')?.value;
+    const email = this.registrationForm.get('email')?.value;
+    const password = this.registrationForm.get('password')?.value;
 
-      const user = new User(name, lastName, email, password);
-      this.uplayService.registration(user).subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['/']);
-        },
-        (error: HttpErrorResponse) => {
-          this.alertMessage = "Hubo un error en el sistema, intente mas tarde.";
-          this.showAlert = true;
-          console.error('Error en la solicitud:', error);
-        }
+    const user = new User(name, lastName, email, password);
+    this.uplayService.registration(user)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch(error => {
+        console.error('Error en la solicitud:', error);
+        this.alertMessage = 'Hubo un error en el sistema, intente más tarde.';
+        this.showAlert = true;
+      });
+  }
 
-      )
-    }
+  get name() {
+    return this.registrationForm.get('name') as FormControl;
+  }
+  get lastname() {
+    return this.registrationForm.get('lastname') as FormControl;
+  }
+
+  get email() {
+    return this.registrationForm.get('email') as FormControl;
+  }
+
+  get password() {
+    return this.registrationForm.get('password') as FormControl;
+  }
+
+  get confirmationPassword() {
+    return this.registrationForm.get('confirmationPassword') as FormControl;
   }
 
 }
