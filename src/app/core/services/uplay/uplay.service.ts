@@ -24,3 +24,33 @@ export class UplayService {
       })
     );
   }
+
+  registration(user: User): Promise<any> {
+    const url = `${this.apiUplayURL}/users/register`;
+  
+    return new Promise<any>((resolve, reject) => {
+        this.http.post(url, user).subscribe(
+            (data) => {
+                resolve(data);
+            },
+            (error) => {
+                console.error('Error: ', error);
+                reject(error);
+            }
+        );
+    });
+}
+
+  getCoinBalance(userId: number): Observable<number> {
+    const url = `${this.apiUplayURL}/users/coin-balance/${userId}`;
+
+    return this.http.get<number>(url);
+  }
+  
+  updateCoinBalance(userId: number, newBalance: number): Observable<any> {
+    const url = `${this.apiUplayURL}/users/update-coin-balance/${userId}`;
+    const params = { newCoinBalance: newBalance.toString() };
+  
+    return this.http.put(url, null, { params });
+  }
+}
