@@ -10,12 +10,13 @@ import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status
 export class NavbarComponent {
   constructor(
     private router: Router,
-    private authStatusService: AuthStatusService
+    private authStatusService: AuthStatusService,
   ) { }
 
   isLoggedIn: boolean = false;
   isLoginRoute: boolean = false;
   currentRoute: string = '';
+
 
   ngOnInit() {
     this.checkLoginStatus();

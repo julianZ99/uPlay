@@ -8,18 +8,18 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home-page/home-page.module').then((m) => m.HomePageModule),
   },
   {
-    path: '',
+    path: 'login', 
     loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '',
+    path: 'user',
     loadChildren: () => import('./modules/user-page/user-page.module').then((m) => m.UserPageModule),
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

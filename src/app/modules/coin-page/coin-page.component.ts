@@ -10,7 +10,10 @@ import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status
 export class CoinPageComponent {
   isLoggedIn: boolean = false;
 
-  constructor(private authStatusService: AuthStatusService) {
+  constructor(
+    private authStatusService: AuthStatusService,
+  ) {
     this.isLoggedIn = this.authStatusService.isLoggedIn();
   }
+
 }
