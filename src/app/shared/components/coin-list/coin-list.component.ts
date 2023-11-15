@@ -33,7 +33,6 @@ export class CoinListComponent implements OnInit {
   getCryptocurrencyList() {
     this.coingeckoService.getCryptocurrencyList()
       .then((data) => {
-        console.log(data);
         this.coinList = data;
       })
       .catch((error: any) => {

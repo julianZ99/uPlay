@@ -8,6 +8,7 @@ export class Coin {
     total_volume: number;
     price_change_24h: number;
     price_change_percentage_24h: number;
+    id: string;
 
     constructor(data: any) {
         this.current_price = data.current_price;
@@ -18,5 +19,6 @@ export class Coin {
         this.price_change_percentage_24h = data.price_change_percentage_24h;
         this.symbol = data.symbol;
         this.total_volume = data.total_volume;
+        this.id = data.id;
     }
 }
