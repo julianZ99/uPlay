@@ -4,7 +4,10 @@
   animation: gradient 20s ease infinite;
 }
 
-
+.form-control,
+.alert {
+  margin-bottom: 20px;
+}
 
 .click-container{
   cursor: pointer;
@@ -23,11 +26,6 @@
     background-position: 0% 50%;
   }
 }
-
-.form-label {
-  opacity: 0;
-}
-
 
 .btn {
   width: 100%;

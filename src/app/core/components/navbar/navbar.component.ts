@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 
 @Component({
@@ -14,13 +14,31 @@ export class NavbarComponent {
   ) { }
 
   isLoggedIn: boolean = false;
+  isLoginRoute: boolean = false;
+  currentRoute: string = '';
 
   ngOnInit() {
     this.checkLoginStatus();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = this.router.url;
+        console.log(this.currentRoute);
+        this.isLoginRoute = this.currentRoute === '/login';
+        console.log(this.isLoginRoute);
+      }
+    });
   }
 
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/registration']);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 
   navigateToCoins() {
@@ -46,5 +64,4 @@ export class NavbarComponent {
       }
     );
   }
-
 }
