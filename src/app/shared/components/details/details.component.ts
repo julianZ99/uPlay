@@ -9,7 +9,7 @@ import { switchMap, filter } from 'rxjs/operators';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
-  coinDetails: any;
+  coinDetails!: any;
 
   constructor(
     private sharedCoinService: SharedCoinService,

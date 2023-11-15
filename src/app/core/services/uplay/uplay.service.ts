@@ -24,19 +24,3 @@ export class UplayService {
       })
     );
   }
-
-  registration(user: User): Promise<any> {
-    const url = `${this.apiUplayURL}/users/register`;
-    return new Promise<any>((resolve, reject) => {
-        this.http.post(url, user).subscribe(
-            (data) => {
-                resolve(data);
-            },
-            (error) => {
-                console.error('Error: ', error);
-                reject(error);
-            }
-        );
-    });
-}
-}
