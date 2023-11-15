@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <section class="vh-100 gradient-custom">
   <app-snowflakes></app-snowflakes>
   <div class="container py-5 h-100">
@@ -15,9 +17,19 @@
                 <label class="form-label" for="typeEmailX">Email</label>
                 <input type="email" id="typeEmailX" formControlName="username" class="form-control form-control-ml"
                   placeholder="Email" />
-                <label class="form-label" for="typePasswordX">Password</label>
+                <div class="alert alert-danger" role="alert" [hidden]="username.valid  || username.pristine">
+                  <span *ngIf="username.errors?.['required']">
+                    El nombre es obligatorio.
+                  </span>
+                </div>
+                <label class="form-label" for="typePasswordX">Contraseña</label>
                 <input type="password" id="typePasswordX" formControlName="password"
                   class="form-control form-control-ml" placeholder="Password" />
+                <div class="alert alert-danger" role="alert" [hidden]="password.valid  || password.pristine">
+                  <span *ngIf="password.errors?.['required']">
+                    La contraseña es obligatoria.
+                  </span>
+                </div>
               </div>
 
               <div *ngIf="showAlert" class="alert alert-warning">
@@ -33,7 +45,7 @@
             </form>
 
             <div>
-              <p class="mb-0">Don't have an account? 
+              <p class="mb-0">Don't have an account?
                 <span class="text-white-50 fw-bold" (click)="navigateToRegistration()">Sign Up</span>
               </p>
             </div>
@@ -44,3 +56,5 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>
