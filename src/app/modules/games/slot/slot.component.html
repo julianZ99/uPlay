@@ -1,32 +1,38 @@
 <p>Welcome, {{ authenticatedUser?.name }}!</p>
 <p>Your current coin balance: {{ coinBalance }}</p>
-<p>Cost to play: {{ playCost }}</p>
 
-<p *ngIf="isWinner !== null">
-  {{ isWinner ? 'Congratulations! You won!' : 'Better luck next time!' }}
-  {{ isWinner ? 'You earned ' + rewardCoins + ' coins!' : '' }}
-</p>
-<div class="game-area">
-  <div
-    class="card"
-    *ngFor="let card of cards, let i = index"
-    [@cardSpinner]="card.state"
-    [style.background]="card.color"
-    [class.visible]="card.state === 'in' && isEnded"
-  >
-    <p style="font-size: 36px; text-align: center;">
-      {{ card.value }}
-    </p>
+<div class="jumbotron text-center">
+  <div class="row ">
+          <div class="col-md-3 text-center">
+              <h2 class="cred-lbl">uCoins</h2>
+              <h1 class="credits">{{coinBalance}}</h1>
+          </div>
+          <div class="col-md-6 text-center">
+              <h1 class="main-heading">SLOTS</h1>
+          </div>
+          <div class="col-md-3 text-center">
+              <h2 class="bet-cred-lbl">ADD COIN</h2>
+              <h1 class="bet-credits">{{betCredits}}</h1>
+          </div>
   </div>
   
-</div>
-
-<button
-  type="button"
-  class="spin-btn green-btn"
-  aria-label="Spin"
-  (click)="animateSpin()"
->
-  <span>S P I N</span>
-</button>
+  <div class="row justify-content-md-center reel">
+      <div class="col-md-2 image-one" id="reelImg" ><img (click)="stopSpinning()" [src]="currentSym1.symbolLink" alt="1"></div>
+      <div class="col-md-2 image-two" id="reelImg"><img (click)="stopSpinning()" [src]="currentSym2.symbolLink" alt="2"></div>
+      <div class="col-md-2 image-three" id="reelImg"><img (click)="stopSpinning()" [src]="currentSym3.symbolLink" alt="3"></div>
+  </div>
+  
+  <div class="row main-btns">
+      <div class="col-md-4 sub-btns">
+          <button type="button" class="btn btn-outline-info" (click)="betCoin()">BET COIN</button>
+          <button type="button" class="btn btn-outline-info" (click)="betMax()">BET MAX</button>
+      </div>
+      <div class="col-md-4">
+          <button type="button" class="btn btn-danger btn-lg btn-spin" (click)="spinning()">SPIN</button>
+      </div>
+      <div class="col-md-4 sub-btns">
+          <button type="button" class="btn btn-outline-info" (click)="reset()">RESET</button>
+      </div>    
+  </div>
+  </div>
 
