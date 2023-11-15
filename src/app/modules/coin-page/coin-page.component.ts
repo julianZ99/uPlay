@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 
 

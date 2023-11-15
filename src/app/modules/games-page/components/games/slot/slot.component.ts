@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
+import { CoinBalanceService } from 'src/app/core/services/coin-balance/coin-balance.service';
 import { symbols } from './symbols';
 
 @Component({
@@ -15,7 +16,7 @@ import { symbols } from './symbols';
 
 export class SlotComponent implements OnInit, OnDestroy {
   authenticatedUser: any | null;
-  coinBalance!: number;
+  coinBalance: number = 0;
   netCredits:any;
   betCredits: number = 0; // apuesta
   isWinner: boolean | null = null;
@@ -64,6 +65,7 @@ export class SlotComponent implements OnInit, OnDestroy {
   constructor(
     private authStatusService: AuthStatusService,
     private uplayService: UplayService,
+    private coinBalanceService: CoinBalanceService,
   ) { }
 
 
@@ -79,6 +81,7 @@ export class SlotComponent implements OnInit, OnDestroy {
         this.uplayService.getCoinBalance(user.id).subscribe((balance) => {
           this.coinBalance = balance;
           console.log(this.coinBalance);
+          this.coinBalanceService.updateCoinBalance(this.coinBalance);
         });
       }
     });
@@ -164,6 +167,8 @@ export class SlotComponent implements OnInit, OnDestroy {
       this.betCredits = 0;
       alert("You have Lost!");
     }
+    //update coins view
+    this.coinBalanceService.updateCoinBalance(this.coinBalance);
     //carga db con coins
     this.uplayService.updateCoinBalance(this.authenticatedUser.id, this.coinBalance).subscribe(
       () => {

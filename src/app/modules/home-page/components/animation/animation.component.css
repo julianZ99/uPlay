@@ -13,12 +13,12 @@
   
   .floating {
     position: absolute;
-    animation-name: floating;
     -webkit-animation-name: floating;
-    animation-duration: 5s;
+    animation-name: floating;
     -webkit-animation-duration: 5s;
-    animation-iteration-count: infinite;
+    animation-duration: 5s;
     -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
   }
   .floating.utncoin {
     display: inline-block;
