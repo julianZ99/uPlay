@@ -18,7 +18,7 @@ export class CoinListComponent implements OnInit {
     private coingeckoService: CoingeckoService,
     private authStatusService: AuthStatusService,
     private sharedCoinService: SharedCoinService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.checkLoginStatus();
@@ -31,19 +31,13 @@ export class CoinListComponent implements OnInit {
   }
 
   getCryptocurrencyList() {
-    const observer: Observer<any[]> = {
-      next: (data: any[]) => {
+    this.coingeckoService.getCryptocurrencyList()
+      .then((data) => {
         this.coinList = data;
-      },
-      error: (error) => {
+      })
+      .catch((error: any) => {
         console.error('Error fetching cryptocurrency data:', error);
-      },
-      complete: () => {
-        // NADA
-      },
-    };
-
-    this.coingeckoService.getCryptocurrencyList().subscribe(observer);
+      });
   }
 
   checkLoginStatus() {

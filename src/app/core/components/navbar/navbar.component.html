@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid d-flex justify-content-between">
     <div class="d-flex align-items-center">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" (click)="navigateToHome()">
         <img src="assets/uplay.svg" alt="uPlayLogo" width="100" height="40">
       </a>
 
@@ -13,5 +13,6 @@
     </div>
 
     <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
+    <button class="btn btn-warning" *ngIf="isLoggedIn" (click)="navigateToHome()">Home</button>
   </div>
 </nav>
