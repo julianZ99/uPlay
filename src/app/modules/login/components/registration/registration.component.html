@@ -1,5 +1,3 @@
-
-
 <section class="vh-100 gradient-custom">
     <app-snowflakes></app-snowflakes>
     <div class="container py-5 h-100">
@@ -12,68 +10,112 @@
                             <app-floating-logo></app-floating-logo>
                         </a>
                         <br>
-                        <form [formGroup]="registrationForm" class="form-group" (ngSubmit)="navigateToHome()">
+                        <form [formGroup]="registrationForm" class="form-group" (ngSubmit)="userResgitration()">
                             <div class="form-outline form-white mb-4">
-                                <label class="form-label" for="typePasswordX">Nombre</label>
+                                <label class="form-label" for="typePasswordX">Name</label>
                                 <input type="text" id="typeNameX" formControlName="name"
-                                    class="form-control form-control-ml" placeholder="Nombre" />
+                                    class="form-control form-control-ml" placeholder="Name" />
                                 <div class="alert alert-danger" role="alert" [hidden]="name.valid  || name.pristine">
                                     <span *ngIf="name.errors?.['required']">
-                                        El nombre es obligatorio.
+                                        The name is required.
                                     </span>
                                     <span *ngIf="name.errors?.['minlength']">
-                                        El nombre tiene que ser mayor a 4 caracteres.
+                                        The name must be greater than 4 characters.
                                     </span>
                                 </div>
 
-                                <label class="form-label" for="typeEmailX">Apellido</label>
+                                <label class="form-label" for="typeEmailX">Last Name</label>
                                 <input type="text" id="typeEmailX" formControlName="lastname"
-                                    class="form-control form-control-ml" placeholder="Apellido" />
+                                    class="form-control form-control-ml" placeholder="Last Name" />
                                 <div class="alert alert-danger" role="alert"
                                     [hidden]="lastname.valid  || lastname.pristine">
                                     <span *ngIf="lastname.errors?.['required']">
-                                        El apellido es obligatorio.
+                                        The Last name is required.
                                     </span>
                                     <span *ngIf="lastname.errors?.['minlength']">
-                                        El apellido tiene que ser mayor a 4 caracteres.
+                                        The Last name must be greater than 4 characters.
                                     </span>
                                 </div>
 
                                 <label class="form-label" for="typeEmailX">Email</label>
                                 <input type="email" id="typeEmailX" formControlName="email"
                                     class="form-control form-control-ml" placeholder="Email" />
-
                                 <div class="alert alert-danger" role="alert" [hidden]="email.valid  || email.pristine">
                                     <span *ngIf="email.errors?.['required']">
-                                        El email es obligatorio.
+                                        The email is required.
                                     </span>
                                     <span *ngIf="email.errors?.['email']">
-                                        El email tiene que ser válido.
+                                        The email must be valid.
                                     </span>
                                 </div>
-                                <label class="form-label" for="typeEmailX">Contraseña</label>
+
+                                <label class="form-label" for="typeEmailX">Phone number</label>
+                                <input type="text" id="typeEmailX" formControlName="phonenumber"
+                                    class="form-control form-control-ml" placeholder="Phone number" />
+                                <div class="alert alert-danger" role="alert"
+                                    [hidden]="phoneNumber.valid  || phoneNumber.pristine">
+                                    <span *ngIf="phoneNumber.errors?.['required']">
+                                        The phone number is required.
+                                    </span>
+                                    <span *ngIf="phoneNumber.errors?.['minlength'] || phoneNumber.errors?.['maxlength']">
+                                        The phone number must be 10 digits.
+                                    </span>
+                                </div>
+
+                                <label class="form-label" for="typeEmailX">Username</label>
+                                <input type="text" id="typeEmailX" formControlName="username"
+                                    class="form-control form-control-ml" placeholder="Username" />
+                                <div class="alert alert-danger" role="alert"
+                                    [hidden]="userName.valid  || userName.pristine">
+                                    <span *ngIf="userName.errors?.['required']">
+                                        The username is required.
+                                    </span>
+                                    <span *ngIf="userName.errors?.['minlength']">
+                                        The username must be greater than 4 characters.
+                                    </span>
+                                </div>
+
+                                <label class="form-label" for="typeEmailX">Password</label>
                                 <input type="password" id="typePasswordX" formControlName="password"
                                     class="form-control form-control-ml" placeholder="Password" />
 
                                 <div class="alert alert-danger" role="alert"
                                     [hidden]="password.valid  || password.pristine">
                                     <span *ngIf="password.errors?.['required']">
-                                        La contraseña es obligatoria.
+                                        The password is required.
                                     </span>
                                     <span *ngIf="password.errors?.['minlength']">
-                                        La contraseña tiene que ser mayor a 4 caracteres.
+                                        The password must be greater than 4 characters.
                                     </span>
                                 </div>
-                                <label class="form-label" for="typePasswordX">Confirma tu contraseña</label>
+
+                                <label class="form-label" for="typePasswordX">Confirm your password</label>
                                 <input type="password" id="typeConfirmationPasswordX"
                                     formControlName="confirmationPassword" class="form-control form-control-ml"
-                                    placeholder="Confirma tu contraseña" />
+                                    placeholder="Confirm your password" />
                                 <div class="alert alert-danger" role="alert"
                                     [hidden]="confirmationPassword.valid  || confirmationPassword.pristine">
                                     <span>
-                                        Las contraseñas tienen que coincidir.
+                                        The passwords have to match..
                                     </span>
                                 </div>
+                            </div>
+
+                            <label class="form-label" for="typeEmailX">Question</label>
+                            <select id="typeEmailX" formControlName="question" class="form-control form-control-ml">
+                                <option value="">Select an question</option>
+                                <option *ngFor="let question of questions" [value]="question.id">{{ question.questionDescription }}
+                                </option>
+                            </select>
+
+                            <label class="form-label" for="typeEmailX">Answer</label>
+                            <input type="text" id="typeEmailX" formControlName="answer"
+                                class="form-control form-control-ml" placeholder="Answer" />
+                            <div class="alert alert-danger" role="alert"
+                                [hidden]="answer.valid  || answer.pristine">
+                                <span *ngIf="answer.errors?.['required']">
+                                    The answer is required.
+                                </span>
                             </div>
 
                             <div *ngIf="showAlert" class="alert alert-warning">
@@ -81,7 +123,8 @@
                             </div>
 
                             <div class="pt-1 mb-4">
-                                <button class="btn btn-warning btn-lg btn-block" type="submit" [disabled]="registrationForm.invalid">Registrarse</button>
+                                <button class="btn btn-warning btn-lg btn-block" type="submit"
+                                    [disabled]="registrationForm.invalid">Registrarse</button>
                             </div>
                         </form>
                     </div>
@@ -90,5 +133,3 @@
         </div>
     </div>
 </section>
-
-<app-footer></app-footer>

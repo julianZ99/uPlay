@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { last } from 'rxjs';
+import { Question } from 'src/app/core/models/question/question';
 import { User } from 'src/app/core/models/user/user';
+import { UserResgistration } from 'src/app/core/models/userResgistration/user-resgistration';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 
 @Component({
@@ -18,6 +20,8 @@ export class RegistrationComponent {
   alertMessage: string = '';
   showAlert: boolean = false;
 
+  questions: Question[] = [];
+
   constructor(
     private router: Router,
     private uplayService: UplayService
@@ -26,16 +30,20 @@ export class RegistrationComponent {
       'name': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'lastname': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'email': new FormControl('', [Validators.required, Validators.email]),
+      'phonenumber': new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      'username': new FormControl('', [Validators.required, Validators.minLength(6)]),
       'password': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'confirmationPassword': new FormControl('', [Validators.required, Validators.minLength(4),
       this.passwordMatchValidator.bind(this)]),
+      'question': new FormControl('', [Validators.required]),
+      'answer': new FormControl('', [Validators.required]),
     });
 
     this.passwordControl = this.registrationForm.get('password') || new FormControl('');
   }
 
   ngOnInit(): void {
-
+    this.getQuestions();
   }
 
   passwordMatchValidator(control: AbstractControl) {
@@ -49,13 +57,17 @@ export class RegistrationComponent {
     }
   }
 
-  navigateToHome() {
+  userResgitration() {
     const name = this.registrationForm.get('name')?.value;
     const lastName = this.registrationForm.get('lastname')?.value;
     const email = this.registrationForm.get('email')?.value;
     const password = this.registrationForm.get('password')?.value;
+    const userName = this.registrationForm.get('username')?.value;
+    const phoneNumber = this.registrationForm.get('phonenumber')?.value;
+    const questionId = this.registrationForm.get('question')?.value;
+    const answer = this.registrationForm.get('answer')?.value;
 
-    const user = new User(name, lastName, email, password);
+    const user = new UserResgistration(userName, email, password, name, lastName,phoneNumber,questionId,answer);
     this.uplayService.registration(user)
       .then(() => {
         this.router.navigate(['/']);
@@ -65,6 +77,22 @@ export class RegistrationComponent {
         this.alertMessage = 'Hubo un error en el sistema, intente más tarde.';
         this.showAlert = true;
       });
+  }
+
+  navigateToHome(){
+    this.router.navigate(['/']);
+  }
+
+  getQuestions(){
+    this.uplayService.getQuestion()
+    .then((data)=>{
+      this.questions = data;
+    })
+    .catch(error => {
+      console.error('Error en la solicitud:', error);
+      this.alertMessage = 'Hubo un error en el sistema, intente más tarde.';
+      this.showAlert = true;
+    });
   }
 
   get name() {
@@ -78,12 +106,28 @@ export class RegistrationComponent {
     return this.registrationForm.get('email') as FormControl;
   }
 
+  get phoneNumber(){
+    return this.registrationForm.get('phonenumber') as FormControl;
+  }
+
+  get userName(){
+    return this.registrationForm.get('username') as FormControl;
+  }
+
   get password() {
     return this.registrationForm.get('password') as FormControl;
   }
 
   get confirmationPassword() {
     return this.registrationForm.get('confirmationPassword') as FormControl;
+  }
+
+  get question(){
+    return this.registrationForm.get('question') as FormControl;
+  }
+
+  get answer(){
+    return this.registrationForm.get('answer') as FormControl;
   }
 
 }
