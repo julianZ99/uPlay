@@ -1,5 +1,6 @@
 .jumbotron{
   padding: 2rem 1rem;
+  overflow: hidden;
 }
 
 .main-heading{

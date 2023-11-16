@@ -1,5 +1,4 @@
 
-
 <div class="jumbotron text-center">
   <div class="row ">
           <div class="col-md-3 text-center">
@@ -16,21 +15,22 @@
   </div>
   
   <div class="row justify-content-md-center border-warning reel">
-      <div class="col-md-2 image-one" id="reelImg" ><img (click)="stopSpinning()" [src]="currentSym1.symbolLink" alt="1"></div>
-      <div class="col-md-2 image-two" id="reelImg"><img (click)="stopSpinning()" [src]="currentSym2.symbolLink" alt="2"></div>
-      <div class="col-md-2 image-three" id="reelImg"><img (click)="stopSpinning()" [src]="currentSym3.symbolLink" alt="3"></div>
+      <div class="col-md-2 image-one" id="reelImg" ><img [src]="currentSym1.symbolLink" alt="1"></div>
+      <div class="col-md-2 image-two" id="reelImg"><img [src]="currentSym2.symbolLink" alt="2"></div>
+      <div class="col-md-2 image-three" id="reelImg"><img  [src]="currentSym3.symbolLink" alt="3"></div>
   </div>
   
   <div class="row main-btns">
       <div class="col-md-4 sub-btns">
-          <button type="button" class="btn btn-sm btn-info" (click)="betCoin()">BET 1 COIN</button>
-          <button type="button" class="btn btn-sm btn-warning" (click)="betMax()">BET MAX</button>
+          <button type="button" class="btn btn-sm btn-info" (click)="betCoin()" [disabled]="isSpinning">BET 1 COIN</button>
+          <button type="button" class="btn btn-sm btn-warning" (click)="betMax()" [disabled]="isSpinning">BET MAX</button>
       </div>
       <div class="col-md-4">
-          <button type="button" class="btn btn-success btn-lg btn-spin" (click)="spinning()">SPIN</button>
+          <button type="button" class="btn btn-success btn-lg btn-spin" (click)="spinning()" [disabled]="isSpinning">SPIN</button>
       </div>
       <div class="col-md-4 sub-btns">
-          <button type="button" class="btn btn-danger" (click)="reset()">RESET BET</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" [disabled]="isSpinning">RESET BET</button>
+
       </div>    
   </div>
   </div>
