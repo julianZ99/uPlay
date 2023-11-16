@@ -30,7 +30,8 @@
           <button type="button" class="btn btn-success btn-lg btn-spin" (click)="spinning()">SPIN</button>
       </div>
       <div class="col-md-4 sub-btns">
-          <button type="button" class="btn btn-danger" (click)="reset()">RESET BET</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" [disabled]="isSpinning">RESET BET</button>
+
       </div>    
   </div>
   </div>

@@ -19,19 +19,24 @@ export class SlotComponent implements OnInit, OnDestroy {
   coinBalance: number = 0;
   netCredits:any;
   betCredits: number = 0; // apuesta
+
+  isSpinning: boolean = false;
   isWinner: boolean | null = null;
 
   idApuesta: number = 0;
-
+  startTime!: number;
+  duration: number = 5000; // 5 seconds
+  slowdownFactor: number = 0.02;
   details:any;
   win: any;
   lost: any;
 
   stopSpin:any; 
+ 
 
-  currentSym1!: symbols;//Symbol1 in the reel
-  currentSym2!: symbols;//Symbol2 in the reel
-  currentSym3!: symbols;//Symbol3 in the reel
+  currentSym1!: symbols;
+  currentSym2!: symbols;
+  currentSym3!: symbols;
 
   symbol1:symbols = {
     value: 7,
@@ -91,30 +96,55 @@ export class SlotComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  stopSpinning(){
+  stopSpinning() {
     clearInterval(this.stopSpin);
+    this.isSpinning = false;
     this.winOrLose();
-
-
   }
 
-  spinning(){
-    if(this.betCredits > 0){
-    //spinning
-    this.stopSpin = setInterval(()=>{this.spin()},10);
-    }else{
-      alert("Insufficent Credits!");
-    }  
+  spinning() {
+    if (this.betCredits > 0 && !this.isSpinning) {
+      this.isSpinning = true;
+      this.startTime = Date.now();
+      this.stopSpin = setInterval(() => { this.spin() }, 10);
+    } else if (this.isSpinning) {
+      alert("Slot is already spinning!");
+    } else {
+      alert("Insufficient Credits!");
+    }
   }
-
-  spin(){
-    let randomNum1 = Math.floor(Math.random() * (this.symbolReel.length-1));
-    let randomNum2 = Math.floor(Math.random() * (this.symbolReel.length-1));
-    let randomNum3 = Math.floor(Math.random() * (this.symbolReel.length-1));
-
+  
+  spin() {
+    let elapsedTime = Date.now() - this.startTime;
+  
+    if (elapsedTime >= this.duration) {
+      clearInterval(this.stopSpin);
+      this.winOrLose();
+    } else {
+      this.updateSymbols(elapsedTime);
+    }
+  }
+  
+  updateSymbols(elapsedTime: number) {
+    let randomNum1 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+    let randomNum2 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+    let randomNum3 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+  
     this.currentSym1 = this.symbolReel[randomNum1];
     this.currentSym2 = this.symbolReel[randomNum2];
     this.currentSym3 = this.symbolReel[randomNum3];
+  
+    // Apply slowdown effect
+    this.currentSym1 = this.applySlowdown(this.currentSym1, elapsedTime);
+    this.currentSym2 = this.applySlowdown(this.currentSym2, elapsedTime);
+    this.currentSym3 = this.applySlowdown(this.currentSym3, elapsedTime);
+  }
+  
+  applySlowdown(symbol: symbols, elapsedTime: number): symbols {
+    // Apply slowdown effect based on the slowdownFactor
+    let slowdownPercentage = Math.min(1, elapsedTime / this.duration);
+    symbol.value = Math.max(1, symbol.value - Math.floor(this.slowdownFactor * symbol.value * slowdownPercentage));
+    return symbol;
   }
   
   betCoin(){
