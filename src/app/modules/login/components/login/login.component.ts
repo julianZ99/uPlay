@@ -38,6 +38,10 @@ export class LoginComponent {
         this.router.navigate(['/login/registration']);
     }
 
+    navigateToForgotPassword(){
+        this.router.navigate(['/login/forgotPassword']);
+    }
+
     navigateToMainPage() {
         let username = this.loginForm.get('username')?.value;
         let password = this.loginForm.get('password')?.value;
