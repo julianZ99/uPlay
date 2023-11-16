@@ -56,11 +56,10 @@
 .description-container {
     margin-top: 20px;
     flex: 1; 
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .description-content {
     flex: 1;
     display: block;
-    overflow: visible;
 }
