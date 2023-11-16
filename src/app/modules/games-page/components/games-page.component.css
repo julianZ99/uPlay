@@ -1,0 +1,19 @@
+body {
+    overflow-y: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+.container-fluid {
+    display: flex;
+    height: calc(100vh - 140px);
+}
+
+.content {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+

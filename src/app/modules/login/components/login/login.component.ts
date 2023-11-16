@@ -35,7 +35,7 @@ export class LoginComponent {
     }
 
     navigateToRegistration() {
-        this.router.navigate(['/registration']);
+        this.router.navigate(['/login/registration']);
     }
 
     navigateToMainPage() {

@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <section class="vh-100 gradient-custom">
   <app-snowflakes></app-snowflakes>
   <div class="container py-5 h-100">
@@ -14,20 +12,20 @@
             <br>
             <form [formGroup]="loginForm" class="form-group">
               <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Email</label>
+                <label class="form-label" for="typeEmailX">E-mail or username</label>
                 <input type="email" id="typeEmailX" formControlName="username" class="form-control form-control-ml"
                   placeholder="Email" />
                 <div class="alert alert-danger" role="alert" [hidden]="username.valid  || username.pristine">
                   <span *ngIf="username.errors?.['required']">
-                    El nombre es obligatorio.
+                    Email or username is required.
                   </span>
                 </div>
-                <label class="form-label" for="typePasswordX">Contraseña</label>
+                <label class="form-label" for="typePasswordX">Password</label>
                 <input type="password" id="typePasswordX" formControlName="password"
                   class="form-control form-control-ml" placeholder="Password" />
                 <div class="alert alert-danger" role="alert" [hidden]="password.valid  || password.pristine">
                   <span *ngIf="password.errors?.['required']">
-                    La contraseña es obligatoria.
+                    Password is required.
                   </span>
                 </div>
               </div>
@@ -56,5 +54,3 @@
     </div>
   </div>
 </section>
-
-<app-footer></app-footer>

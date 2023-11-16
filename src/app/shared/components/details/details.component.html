@@ -5,7 +5,7 @@
     </div>
     <div class="links">
       <p class="text-info">
-        <a href="{{ coinDetails?.links?.homepage[0] }}" target="_blank">{{ coinDetails?.links?.homepage[0] }}</a>
+        <a href="{{ coinDetails?.links?.homepage[0]  }}" target="_blank">{{ coinDetails?.links?.homepage[0] }}</a>
       </p>
       <p *ngIf="coinDetails?.links?.subreddit_url && coinDetails?.links?.subreddit_url !== 'https://www.reddit.com'">
         <a href="{{ coinDetails?.links?.subreddit_url }}" target="_blank">{{ coinDetails?.links?.subreddit_url }}</a>
@@ -20,13 +20,26 @@
   </div>
   <div class="prices-container">
     <div class="prices-content">
-      <p class="price text-warning">CURRENT PRICES</p>
+      <p class="price text-warning all-caps">{{ coinDetails?.name }}</p>
+      <p class="price card text-white bg-warning">U$D{{ coinDetails?.market_data?.current_price?.usd | number: '1.2-2' }}</p>
     </div>
     <div class="prices-content">
-      <p class="price text-warning">USD: </p>
-      <p class="price text-success">${{ coinDetails?.market_data?.current_price?.usd | number: '1.2-2' }}</p>
-      <p class="price text-warning">ARS: </p>
-      <p class="price text-success">${{ coinDetails?.market_data?.current_price?.ars | number: '1.2-2' }}</p>
+      <p class="price text-success">DOLAR OFICIAL</p>
+      <p class="price card text-white bg-success">AR${{ dolarOficial| number: '1.2-2' }}</p>
+      <p class="price text-success">-> {{ coinDetails?.name }}</p>
+      <p class="price card text-white bg-success">AR${{ coinDetails?.market_data?.current_price?.ars | number: '1.2-2' }}</p>
+    </div>
+    <div class="prices-content">
+      <p class="price text-secondary">DOLAR MEP</p>
+      <p class="price card text-white bg-secondary">AR${{ dolarMEP | number: '1.2-2' }}</p>
+      <p class="price text-secondary">-> {{ coinDetails?.name }}</p>
+      <p class="price card text-white bg-secondary">AR${{ criptoMEP | number: '1.2-2' }}</p>
+    </div>
+    <div class="prices-content">
+      <p class="price text-info">DOLAR BLUE</p>
+      <p class="price card text-white bg-info">AR${{ dolarBlue | number: '1.2-2' }}</p>
+      <p class="price text-info">-> {{ coinDetails?.name }}</p>
+      <p class="price card text-white bg-info">AR${{ criptoBlue | number: '1.2-2' }}</p>
     </div>
   </div>
 </div>
