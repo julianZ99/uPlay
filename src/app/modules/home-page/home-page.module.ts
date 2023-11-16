@@ -10,12 +10,13 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { GamesPageComponent } from '../games-page/components/games-page.component';
-import { RankingPageComponent } from './components/ranking-page/ranking-page.component';
+import { RankingPageComponent } from '../ranking-page/ranking-page.component';
+import { ExchangePageComponent } from '../exchange-page/exchange-page.component';
 
 
 
 @NgModule({
-  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, RankingPageComponent],
+  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, RankingPageComponent, ExchangePageComponent],
   imports: [
     CommonModule,
     CoreModule,
