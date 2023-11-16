@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Dolar } from '../../models/dolar/dolar';
 import { Coin } from '../../models/coin/coin';
 
 @Injectable({
@@ -11,8 +9,6 @@ import { Coin } from '../../models/coin/coin';
 export class CoingeckoService {
   private apiURL = "https://api.coingecko.com/api/v3";
   private apiKey = 'CG-96rk9R1Rk8GNats2evanpBka ';
-
-  private apiDolarUrl = "https://dolarapi.com/v1/dolares";
 
   constructor(private http: HttpClient) { }
 
@@ -46,38 +42,6 @@ export class CoingeckoService {
     const headers = new HttpHeaders().set('x-cg-demo-api-key', this.apiKey);
 
     return this.http.get(url, { headers });
-  }
-
-  getDolarMEPValue(): Promise<Dolar> {
-    const url = `${this.apiDolarUrl}/bolsa`;
-    
-    return new Promise<Dolar>((resolve, reject) => {
-      this.http.get<any>(url).subscribe(
-        (data) => {
-          resolve(data);
-        },
-        (error) => {
-          console.error('Error: ', error);
-          reject(error);
-        }
-        );
-    });
-  }
-
-  getDolarOficialValue(): Promise<Dolar> {
-    const url = `${this.apiDolarUrl}/oficial`;
-    
-    return new Promise<Dolar>((resolve, reject) => {
-      this.http.get<any>(url).subscribe(
-        (data) => {
-          resolve(data);
-        },
-        (error) => {
-          console.error('Error: ', error);
-          reject(error);
-        }
-        );
-    });
   }
 
 }
