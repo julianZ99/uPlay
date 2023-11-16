@@ -54,6 +54,10 @@ export class NavbarComponent {
     this.router.navigate(['/ranking']);
   }
 
+  navigateToExchange() {
+    this.router.navigate(['/exchange']);
+  }
+
   checkLoginStatus() {
     this.authStatusService.getAuthenticatedUser().subscribe(
       (user: any | null) => {
