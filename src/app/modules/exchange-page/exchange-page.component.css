@@ -1,0 +1,35 @@
+
+body {
+    overflow-y: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 140px);
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-success{
+    color: orangered;
+}
+
+
+.crypto-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.crypto-card {
+    flex: 0 0 30%;
+    padding: 20px;
+    margin: 10px;
+    
+    cursor: pointer;
+}
