@@ -98,7 +98,6 @@ export class SlotComponent implements OnInit, OnDestroy {
 
   stopSpinning() {
     clearInterval(this.stopSpin);
-    this.isSpinning = false;
     this.winOrLose();
   }
 
@@ -116,37 +115,22 @@ export class SlotComponent implements OnInit, OnDestroy {
   
   spin() {
     let elapsedTime = Date.now() - this.startTime;
+    let slowdownDuration = 5000; // 5 seconds
   
-    if (elapsedTime >= this.duration) {
+    if (elapsedTime >= slowdownDuration) {
       clearInterval(this.stopSpin);
       this.winOrLose();
     } else {
-      this.updateSymbols(elapsedTime);
+      let randomNum1 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+      let randomNum2 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+      let randomNum3 = Math.floor(Math.random() * (this.symbolReel.length - 1));
+  
+      this.currentSym1 = this.symbolReel[randomNum1];
+      this.currentSym2 = this.symbolReel[randomNum2];
+      this.currentSym3 = this.symbolReel[randomNum3];
     }
   }
-  
-  updateSymbols(elapsedTime: number) {
-    let randomNum1 = Math.floor(Math.random() * (this.symbolReel.length - 1));
-    let randomNum2 = Math.floor(Math.random() * (this.symbolReel.length - 1));
-    let randomNum3 = Math.floor(Math.random() * (this.symbolReel.length - 1));
-  
-    this.currentSym1 = this.symbolReel[randomNum1];
-    this.currentSym2 = this.symbolReel[randomNum2];
-    this.currentSym3 = this.symbolReel[randomNum3];
-  
-    // Apply slowdown effect
-    this.currentSym1 = this.applySlowdown(this.currentSym1, elapsedTime);
-    this.currentSym2 = this.applySlowdown(this.currentSym2, elapsedTime);
-    this.currentSym3 = this.applySlowdown(this.currentSym3, elapsedTime);
-  }
-  
-  applySlowdown(symbol: symbols, elapsedTime: number): symbols {
-    // Apply slowdown effect based on the slowdownFactor
-    let slowdownPercentage = Math.min(1, elapsedTime / this.duration);
-    symbol.value = Math.max(1, symbol.value - Math.floor(this.slowdownFactor * symbol.value * slowdownPercentage));
-    return symbol;
-  }
-  
+
   betCoin(){
     if(this.coinBalance > 0){
       this.betCredits++;
@@ -215,6 +199,8 @@ export class SlotComponent implements OnInit, OnDestroy {
       matchWins: this.win
     }
 
+
+    this.isSpinning = false;
     console.log(winAndLost);  
   }
 
