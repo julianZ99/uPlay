@@ -1,42 +1,43 @@
-<!-- exchange.component.html -->
-
 <div class="container-fluid">
     <div class="crypto-cards">
-      <div class="card text-white bg-primary mb-3">
-        <div class="card-body">
-          <span class="ms-1 d-none d-sm-inline">
-            <strong>coinBalance</strong>
-            <img src="assets/utncoin.svg" height="20px" alt="a">
-          </span>
-          <div class="form-group">
-            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">UTNcoin to exchange</label>
-            <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="inputValue">
-          </div>
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <span class="ms-1 d-none d-sm-inline">
+                    <strong>coinBalance</strong>
+                    <img src="assets/utncoin.svg" height="20px" alt="utn">
+                </span>
+                <form [formGroup]="exchangeForm" class="form-group">
+                    <label for="inputLarge">ammount to exchange</label>
+                    <input class="form-control form-control-lg" [class.is-invalid]="exchangeForm.get('inputValue')?.invalid && exchangeForm.get('inputValue')?.dirty" type="number" id="inputLarge" formControlName="inputValue">
+                    <div *ngIf="exchangeForm.get('inputValue')?.invalid && exchangeForm.get('inputValue')?.dirty" class="invalid-feedback">
+                      <div *ngIf="exchangeForm.get('inputValue')?.hasError('required')">A Numerical value is required.</div>
+                      <div *ngIf="exchangeForm.get('inputValue')?.hasError('pattern')">Please enter a valid numerical value.</div>
+                    </div>
+                  </form>
+            </div>
         </div>
-      </div>
     </div>
     <div class="crypto-cards">
-      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-        <div class="card-header">to <strong>Bitcoin</strong></div>
-        <div class="card-body">
-          <h4 class="card-title">{{ bitcoinValue }}</h4>
+        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">to <strong>Bitcoin</strong></div>
+            <div class="card-body">
+                <h4 class="card-title">{{ bitcoinValue }}</h4>
+            </div>
+            <button type="button" class="btn btn-warning btn-fixed-height" [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Bitcoin!</button>
         </div>
-        <button type="button" class="btn btn-warning btn-fixed-height" (click)="updateCardTitles()">Exchange to Bitcoin!</button>
-      </div>
-      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-        <div class="card-header">to <strong>Monero</strong></div>
-        <div class="card-body">
-          <h4 class="card-title">{{ moneroValue }}</h4>
+        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">to <strong>Monero</strong></div>
+            <div class="card-body">
+                <h4 class="card-title">{{ moneroValue }}</h4>
+            </div>
+            <button type="button" class="btn btn-warning btn-monero btn-fixed-height" [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Monero!</button>
         </div>
-        <button type="button" class="btn btn-warning btn-monero btn-fixed-height" (click)="updateCardTitles()">Exchange to Monero!</button>
-      </div>
-      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-        <div class="card-header">to <strong>Ethereum</strong></div>
-        <div class="card-body">
-          <h4 class="card-title">{{ ethereumValue }}</h4>
+        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">to <strong>Ethereum</strong></div>
+            <div class="card-body">
+                <h4 class="card-title">{{ ethereumValue }}</h4>
+            </div>
+            <button type="button" class="btn btn-info btn-fixed-height" [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Ethereum!</button>
         </div>
-        <button type="button" class="btn btn-info btn-fixed-height" (click)="updateCardTitles()">Exchange to Ethereum!</button>
-      </div>
     </div>
-  </div>
-  
+</div>

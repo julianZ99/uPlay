@@ -12,7 +12,7 @@ import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { GamesPageComponent } from '../games-page/components/games-page.component';
 import { RankingPageComponent } from '../ranking-page/ranking-page.component';
 import { ExchangePageComponent } from '../exchange-page/exchange-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     HomePageRoutingModule,
     SharedModule
