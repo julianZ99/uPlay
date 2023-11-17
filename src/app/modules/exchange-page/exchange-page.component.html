@@ -1,37 +1,42 @@
+<!-- exchange.component.html -->
+
 <div class="container-fluid">
     <div class="crypto-cards">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-body">
-                <span class="ms-1 d-none d-sm-inline"><strong>coinBalance</strong> <img src="assets/utncoin.svg"
-                        height="20px" alt="a"></span>
-                <div class="form-group">
-                    <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">UTNcoin to exchange</label>
-                    <input class="form-control form-control-lg" type="text" id="inputLarge">
-                </div>
-            </div>
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <span class="ms-1 d-none d-sm-inline">
+            <strong>coinBalance</strong>
+            <img src="assets/utncoin.svg" height="20px" alt="a">
+          </span>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">UTNcoin to exchange</label>
+            <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="inputValue">
+          </div>
         </div>
+      </div>
     </div>
     <div class="crypto-cards">
-        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">to <strong>Bitcoin</strong></div>
-            <div class="card-body">
-                <h4 class="card-title">0btc</h4>
-            </div>
-            <button type="button" class="btn btn-warning btn-fixed-height">Exchange to Bitcoin!</button>
+      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">to <strong>Bitcoin</strong></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ bitcoinValue }}</h4>
         </div>
-        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">to <strong>Monero</strong></div>
-            <div class="card-body">
-                <h4 class="card-title">0xmr</h4>
-            </div>
-            <button type="button" class="btn btn-warning btn-monero btn-fixed-height">Exchange to Monero!</button>
+        <button type="button" class="btn btn-warning btn-fixed-height" (click)="updateCardTitles()">Exchange to Bitcoin!</button>
+      </div>
+      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">to <strong>Monero</strong></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ moneroValue }}</h4>
         </div>
-        <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">to <strong>Ethereum</strong></div>
-            <div class="card-body">
-                <h4 class="card-title">0eth</h4>
-            </div>
-            <button type="button" class="btn btn-info btn-fixed-height">Exchange to Ethereum!</button>
+        <button type="button" class="btn btn-warning btn-monero btn-fixed-height" (click)="updateCardTitles()">Exchange to Monero!</button>
+      </div>
+      <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">to <strong>Ethereum</strong></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ ethereumValue }}</h4>
         </div>
+        <button type="button" class="btn btn-info btn-fixed-height" (click)="updateCardTitles()">Exchange to Ethereum!</button>
+      </div>
     </div>
-</div>
+  </div>
+  
