@@ -2,8 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
-import { UplayService } from 'src/app/core/services/uplay/uplay.service';
+import { AuthService } from 'src/app/core/auth/auth-service/auth.service';
 
 
 @Component({
@@ -20,7 +19,7 @@ export class LoginComponent {
     alertMessage: string = 'Verifica los datos ingresados';
     loginForm: FormGroup;
 
-    constructor(private router: Router, private uplayService: UplayService, private authStatusService: AuthStatusService) {
+    constructor(private router: Router, private authService: AuthService) {
         this.loginForm = new FormGroup({
             'username': new FormControl('', [Validators.required]),
             'password': new FormControl('', [Validators.required]),
@@ -46,11 +45,11 @@ export class LoginComponent {
         let username = this.loginForm.get('username')?.value;
         let password = this.loginForm.get('password')?.value;
 
-        this.uplayService.login(username, password)
+        this.authService.login(username, password)
             .then((response) => {
                 if (response && response.name) {
                     console.log("Login successful. Navigating to main page.");
-                    this.authStatusService.setAuthenticatedUser(response);
+                    //this.authStatusService.setAuthenticatedUser(response);
                     this.router.navigate(['/']);
                 } else {
                     console.log("Login unsuccessful. Showing alert.");
@@ -59,7 +58,7 @@ export class LoginComponent {
                 }
             })
             .catch((error: any) => {
-                this.alertMessage = "Hubo un error en el sistema, intente más tarde.";
+                this.alertMessage = "System Error, try again later...";
                 this.showAlert = true;
                 console.error('Error en la solicitud:', error);
             });

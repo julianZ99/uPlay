@@ -4,7 +4,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { RankingPageComponent } from '../ranking-page/ranking-page.component';
 import { ExchangePageComponent } from '../exchange-page/exchange-page.component';
-import { AuthGuard } from 'src/app/core/services/auth-guard/auth-guard.service';
+import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 
 const homePageRoutes: Routes = [
   {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
+import { AuthGuard } from '../../auth/auth-guard/auth-guard.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status
 export class NavbarComponent {
   constructor(
     private router: Router,
-    private authStatusService: AuthStatusService,
+    private authGuard: AuthGuard,
   ) { }
 
   isLoggedIn: boolean = false;
@@ -59,14 +59,6 @@ export class NavbarComponent {
   }
 
   checkLoginStatus() {
-    this.authStatusService.getAuthenticatedUser().subscribe(
-      (user: any | null) => {
-        this.isLoggedIn = !!user;
-        console.log('navbar. User is logged:', this.isLoggedIn);
-      },
-      (error: any) => {
-        console.error('navbar. Error checking login status:', error);
-      }
-    );
+    this.isLoggedIn = this.authGuard.canActivate();
   }
 }

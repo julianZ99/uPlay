@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
-
+import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 
 @Component({
   selector: 'app-coin-page',
@@ -11,9 +10,9 @@ export class CoinPageComponent {
   isLoggedIn: boolean = false;
 
   constructor(
-    private authStatusService: AuthStatusService,
+    private authGuard: AuthGuard,
   ) {
-    this.isLoggedIn = this.authStatusService.isLoggedIn();
+    this.isLoggedIn = this.authGuard.canActivate();
   }
 
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoingeckoService } from 'src/app/core/services/coingecko/coingecko.service';
-import { Observer } from 'rxjs';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 import { SharedCoinService } from 'src/app/core/services/shared-coin/shared-coin.service';
+import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 
 @Component({
   selector: 'app-coin-list',
@@ -16,7 +15,7 @@ export class CoinListComponent implements OnInit {
 
   constructor(
     private coingeckoService: CoingeckoService,
-    private authStatusService: AuthStatusService,
+    private authGuard: AuthGuard,
     private sharedCoinService: SharedCoinService
   ) { }
 
@@ -41,14 +40,6 @@ export class CoinListComponent implements OnInit {
   }
 
   checkLoginStatus() {
-    this.authStatusService.getAuthenticatedUser().subscribe(
-      (user: any | null) => {
-        this.isLoggedIn = !!user;
-        console.log('coinlist. User is logged:', this.isLoggedIn);
-      },
-      (error: any) => {
-        console.error('coinlist. Error checking login status:', error);
-      }
-    );
+  this.isLoggedIn=this.authGuard.canActivate();
   }
 }

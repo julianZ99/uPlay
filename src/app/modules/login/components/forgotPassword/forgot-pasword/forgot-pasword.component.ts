@@ -3,7 +3,6 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Question } from 'src/app/core/models/question/question';
 import { UserPassword } from 'src/app/core/models/userPassword/user-password';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 
 @Component({

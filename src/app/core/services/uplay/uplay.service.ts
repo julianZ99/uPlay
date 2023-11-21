@@ -5,6 +5,7 @@ import { User } from '../../models/user/user';
 import { Question } from '../../models/question/question';
 import { UserResgistration } from '../../models/userResgistration/user-resgistration';
 import { UserPassword } from '../../models/userPassword/user-password';
+import { Token } from '@angular/compiler';
 
 
 @Injectable({
@@ -15,22 +16,6 @@ export class UplayService {
   private apiUplayURL = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
-
-  login(username: string, password: string): Promise<User> {
-    const url = `${this.apiUplayURL}/users/login`;
-
-    return new Promise<User>((resolve, reject) => {
-      this.http.post<User>(url, { username, password }).subscribe(
-        (response) => {
-          return resolve(response);
-        },
-        (error) => {
-          console.error('Error: ', error);
-          reject(error);
-        }
-      );
-    });
-  }
 
   registration(user: UserResgistration): Promise<any> {
     const url = `${this.apiUplayURL}/users/register`;
