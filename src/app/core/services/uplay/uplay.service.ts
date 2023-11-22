@@ -5,7 +5,7 @@ import { User } from '../../models/user/user';
 import { Question } from '../../models/question/question';
 import { UserResgistration } from '../../models/userResgistration/user-resgistration';
 import { UserPassword } from '../../models/userPassword/user-password';
-import { Token } from '@angular/compiler';
+
 
 
 @Injectable({
@@ -14,8 +14,10 @@ import { Token } from '@angular/compiler';
 export class UplayService {
 
   private apiUplayURL = 'http://localhost:8080/api';
+  private userId!: number;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   registration(user: UserResgistration): Promise<any> {
     const url = `${this.apiUplayURL}/users/register`;
@@ -79,10 +81,21 @@ export class UplayService {
     });
   }
 
-  getCoinBalance(userId: number): Observable<number> {
-    const url = `${this.apiUplayURL}/users/coin-balance/${userId}`;
-
-    return this.http.get<number>(url);
+  getCoinBalance(): Observable<number> {
+    return new Observable<number>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/coin-balance/${this.userId}`;
+        this.http.get<number>(url).subscribe(
+          (data) => {
+            observer.next(data);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
   }
 
   updateCoinBalance(userId: number, newBalance: number): Observable<any> {
@@ -91,4 +104,19 @@ export class UplayService {
 
     return this.http.put(url, null, { params });
   }
+
+  getUserId(): Promise<void> {
+    return new Promise<void>((resolve) => {
+
+      const userData = localStorage.getItem('userData');
+  
+      if (userData) {
+        const user = JSON.parse(userData);
+        this.userId = user.id;
+        console.log('this.userId:', this.userId);
+      }
+  
+      resolve();
+    });
+}
 }

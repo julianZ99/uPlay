@@ -33,9 +33,9 @@ export class AuthService {
   
             this.storeToken(token);
   
-            const userData = response.userData;
-            if (userData) {
-              localStorage.setItem('userData', JSON.stringify(userData));
+            if (response.userData) {
+              localStorage.setItem('userData', response.userData);
+              console.log(localStorage.getItem('userData'));
             }
   
             return response;
@@ -57,6 +57,15 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  getAuthorizationHeader(): HttpHeaders {
+    const token = this.getToken();
+
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
   }
 
   logout(): void{

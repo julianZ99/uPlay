@@ -73,15 +73,19 @@ export class SlotComponent implements OnInit, OnDestroy {
     private coinBalanceService: CoinBalanceService,
   ) { }
 
-
-
   ngOnInit() {
     this.currentSym1 = this.symbolReel[2];
     this.currentSym2 = this.symbolReel[4];
     this.currentSym3 = this.symbolReel[5]; 
     console.log("slots init");
-
+    if (localStorage.getItem('token')) {
+      this.uplayService.getCoinBalance().subscribe((balance) => {
+        this.coinBalance = balance;
+        console.log(this.coinBalance);
+        this.coinBalanceService.updateCoinBalance(this.coinBalance);
+      })
   }
+}
 
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
