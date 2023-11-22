@@ -44,25 +44,20 @@ export class LoginComponent {
     navigateToMainPage() {
         let username = this.loginForm.get('username')?.value;
         let password = this.loginForm.get('password')?.value;
-
+      
         this.authService.login(username, password)
-            .then((response) => {
-                if (response && response.name) {
-                    console.log("Login successful. Navigating to main page.");
-                    //this.authStatusService.setAuthenticatedUser(response);
-                    this.router.navigate(['/']);
-                } else {
-                    console.log("Login unsuccessful. Showing alert.");
-                    this.loginForm.reset();
-                    this.showAlert = true;
-                }
-            })
-            .catch((error: any) => {
-                this.alertMessage = "System Error, try again later...";
-                this.showAlert = true;
-                console.error('Error en la solicitud:', error);
-            });
-    }
+          .subscribe(
+            (response) => {
+              console.log("Login successful. Navigating to main page.");
+              this.router.navigate(['']);
+            },
+            (error) => {
+              console.error('Login error:', error);
+              this.loginForm.reset();
+              this.showAlert = true;
+            }
+          );
+      }
 
     get username() {
         return this.loginForm.get('username') as FormControl;

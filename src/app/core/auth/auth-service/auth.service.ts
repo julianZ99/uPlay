@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../../models/user/user';
+import { Observable, catchError, map } from 'rxjs';
+
+interface LoginResponse {
+  Header: string;
+  token: string;
+  userData: any;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,28 +20,48 @@ export class AuthService {
 
   }
 
-  login(username: string, password: string): Promise<User> {
-    const url = `${this.apiUplayURL}/users/login`;
 
-    return new Promise<User>((resolve, reject) => {
-      this.http.post<any>(url, { username, password }).subscribe(
-        (response) => {
+  login(username: string, password: string): Observable<LoginResponse> {
+    const url = `${this.apiUplayURL}/users/login`;
+  
+    return this.http.post<LoginResponse>(url, { username, password })
+      .pipe(
+        map((response) => {
           if (response && response.token) {
-            this.token = response['jwt'];
-            localStorage.setItem('token', response.token);
-            console.log(response.token);
-            console.log(response);
+            console.log("Login successful.");
+            const token = response.token;
+  
+            this.storeToken(token);
+  
+            const userData = response.userData;
+            if (userData) {
+              localStorage.setItem('userData', JSON.stringify(userData));
+            }
+  
+            return response;
+          } else {
+            console.log("Login unsuccessful. Showing alert.");
+            throw new Error("Login unsuccessful");
           }
-        },
-        (error) => {
-          console.error('Error: ', error);
-          reject(error);
-        }
+        }),
+        catchError((error) => {
+          console.error('Error in login request:', error);
+          throw error; 
+        })
       );
-    });
+  }
+  
+  storeToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   logout(): void{
     localStorage.removeItem('token');
+    localStorage.removeItem('userData');
+    window.location.reload();
   }
 }

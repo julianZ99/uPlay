@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthGuard } from '../../auth/auth-guard/auth-guard.service';
+import { AuthService } from '../../auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ export class NavbarComponent {
   constructor(
     private router: Router,
     private authGuard: AuthGuard,
+    private authService: AuthService
   ) { }
 
   isLoggedIn: boolean = false;
@@ -60,5 +62,9 @@ export class NavbarComponent {
 
   checkLoginStatus() {
     this.isLoggedIn = this.authGuard.canActivate();
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

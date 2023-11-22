@@ -12,7 +12,7 @@
         <a class="nav-item nav-link ms-3" (click)="navigateToExchange()">Exchange</a>
       </div>
     </div>
-
+    <button class="btn btn-warning" *ngIf="isLoggedIn" (click)="logout()">logout</button>
     <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
   </div>
 </nav>
