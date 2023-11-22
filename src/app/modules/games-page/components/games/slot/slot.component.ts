@@ -14,7 +14,7 @@ import { symbols } from './symbols';
 
 })
 
-export class SlotComponent implements OnInit, OnDestroy {
+export class SlotComponent implements OnInit{
   authenticatedUser: any | null;
   coinBalance: number = 0;
   netCredits:any;
@@ -65,10 +65,9 @@ export class SlotComponent implements OnInit, OnDestroy {
 
   symbolReel: symbols[] = [this.symbol1, this.symbol2, this.symbol3, this.symbol4, this.symbol5, this.symbol6];
 
-  private authSubscription: Subscription = new Subscription();
+ 
 
   constructor(
-    private authGuard: AuthGuard,
     private uplayService: UplayService,
     private coinBalanceService: CoinBalanceService,
   ) { }
@@ -87,9 +86,6 @@ export class SlotComponent implements OnInit, OnDestroy {
   }
 }
 
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
-  }
 
   stopSpinning() {
     clearInterval(this.stopSpin);
@@ -179,7 +175,7 @@ export class SlotComponent implements OnInit, OnDestroy {
     //update coins view
     this.coinBalanceService.updateCoinBalance(this.coinBalance);
     //carga db con coins
-    this.uplayService.updateCoinBalance(this.authenticatedUser.id, this.coinBalance).subscribe(
+    this.uplayService.updateCoinBalance(this.coinBalance).subscribe(
       () => {
         console.log('Coin balance updated successfully.');
       },

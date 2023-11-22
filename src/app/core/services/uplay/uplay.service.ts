@@ -98,11 +98,22 @@ export class UplayService {
     });
   }
 
-  updateCoinBalance(userId: number, newBalance: number): Observable<any> {
-    const url = `${this.apiUplayURL}/users/update-coin-balance/${userId}`;
-    const params = { newCoinBalance: newBalance.toString() };
-
-    return this.http.put(url, null, { params });
+  updateCoinBalance(newBalance: number): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/update-coin-balance/${this.userId}`;
+        const params = { newCoinBalance: newBalance.toString() };
+        this.http.put(url, null, { params }).subscribe(
+          () => {
+            observer.next();
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
   }
 
   getUserId(): Promise<void> {
