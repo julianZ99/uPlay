@@ -6,6 +6,12 @@ body {
     height: 100%;
 }
 
+.icon-container {
+  display: inline-block;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
 .container-fluid {
     display: flex;
     flex-direction: column;

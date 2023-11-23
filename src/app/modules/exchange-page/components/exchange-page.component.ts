@@ -104,5 +104,10 @@ export class ExchangePageComponent implements OnInit {
       console.error('Error fetching Dolar values:', error);
     }
   }
+
+  openModal() {
+    const modal = document.querySelector('.modal');
+    modal?.classList.toggle('show');
+  }
 }
 
