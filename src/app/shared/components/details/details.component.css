@@ -57,9 +57,23 @@
     margin-top: 20px;
     flex: 1; 
     overflow-y: auto;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
 }
 
 .description-content {
     flex: 1;
     display: block;
+}
+
+.description-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+.description-container::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.description-container::-webkit-scrollbar-track {
+    background: transparent;
 }
