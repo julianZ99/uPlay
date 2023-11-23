@@ -10,9 +10,9 @@
                       <tr>
                           <th class="w-auto">ID</th>
                           <th class="w-40">Date</th>
+                          <th class="w-auto">UTNc</th>
                           <th class="w-auto">Crypto</th>
                           <th class="w-auto">Value</th>
-                          <th class="w-auto">UTNc</th>
                           <th class="w-auto">Obtained</th>
                       </tr>
                   </thead>
@@ -20,9 +20,9 @@
                       <tr *ngFor="let transaction of transactions">
                           <td>{{ transaction.id }}</td>
                           <td>{{ transaction.Date | date }}</td>
+                          <td>{{ transaction.amount | number: '1.0-2' }}</td>
                           <td>{{ transaction.cryptocurrency }}</td>
                           <td>{{ transaction.currentCryptoValue }}</td>
-                          <td>{{ transaction.amount | number: '1.0-2' }}</td>
                           <td>{{ transaction.cryptoAmount | number: '1.2-5' }}</td>
                           <td></td>
                       </tr>

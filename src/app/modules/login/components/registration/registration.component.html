@@ -23,7 +23,7 @@
                                         The name must contain between 4 and 25 characters.
                                     </span>
                                     <span *ngIf="name.errors?.['pattern']">
-                                        The name must contain only letters.
+                                        The name must contain letters.
                                     </span>
                                 </div>
 
@@ -36,10 +36,10 @@
                                         The Last name is required.
                                     </span>
                                     <span *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlength']">
-                                        The last name must contain between 4 and 25 characters.
+                                        The last name must contain between 6 and 25 characters.
                                     </span>
                                     <span *ngIf="lastname.errors?.['pattern']">
-                                        The last name must contain only letters.
+                                        The last name must contain letters.
                                     </span>
                                 </div>
 
@@ -84,7 +84,7 @@
                                         The username contain between 4 and 25 characters.
                                     </span>
                                     <span *ngIf="userName.errors?.['pattern']">
-                                        The username must contain only letters.
+                                        The username must contain letters.
                                     </span>
                                 </div>
 
