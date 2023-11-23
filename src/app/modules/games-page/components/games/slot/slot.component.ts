@@ -70,6 +70,7 @@ export class SlotComponent implements OnInit{
   constructor(
     private uplayService: UplayService,
     private coinBalanceService: CoinBalanceService,
+    private authGuard: AuthGuard
   ) { }
 
   ngOnInit() {
@@ -77,7 +78,7 @@ export class SlotComponent implements OnInit{
     this.currentSym2 = this.symbolReel[4];
     this.currentSym3 = this.symbolReel[5]; 
     console.log("slots init");
-    if (localStorage.getItem('token')) {
+    if (this.authGuard.canActivate()) {
       this.uplayService.getCoinBalance().subscribe((balance) => {
         this.coinBalance = balance;
         console.log(this.coinBalance);
