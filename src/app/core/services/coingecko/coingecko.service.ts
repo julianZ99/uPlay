@@ -44,4 +44,14 @@ export class CoingeckoService {
     return this.http.get(url, { headers });
   }
 
+  fetchExchangeValues(cryptoIds: string[]): Observable<any[]> {
+    const url = `${this.apiURL}/coins/markets`;
+    const headers = new HttpHeaders().set('x-cg-demo-api-key', this.apiKey);
+    const params = new HttpParams()
+      .set('vs_currency', 'usd')
+      .set('ids', cryptoIds.join(','));
+
+    return this.http.get<any[]>(url, { headers, params });
+  }
+
 }

@@ -7,29 +7,16 @@ import { UserResgistration } from '../../models/userResgistration/user-resgistra
 import { UserPassword } from '../../models/userPassword/user-password';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UplayService {
 
   private apiUplayURL = 'http://localhost:8080/api';
+  private userId!: number;
 
-  constructor(private http: HttpClient) { }
-
-  login(username: string, password: string): Promise<User> {
-    const url = `${this.apiUplayURL}/users/login`;
-
-    return new Promise<User>((resolve, reject) => {
-      this.http.post<User>(url, { username, password }).subscribe(
-        (response) => {
-          return resolve(response);
-        },
-        (error) => {
-          console.error('Error: ', error);
-          reject(error);
-        }
-      );
-    });
+  constructor(private http: HttpClient) {
   }
 
   registration(user: UserResgistration): Promise<any> {
@@ -94,16 +81,53 @@ export class UplayService {
     });
   }
 
-  getCoinBalance(userId: number): Observable<number> {
-    const url = `${this.apiUplayURL}/users/coin-balance/${userId}`;
-
-    return this.http.get<number>(url);
+  getCoinBalance(): Observable<number> {
+    return new Observable<number>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/coin-balance/${this.userId}`;
+        this.http.get<number>(url).subscribe(
+          (data) => {
+            observer.next(data);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
   }
 
-  updateCoinBalance(userId: number, newBalance: number): Observable<any> {
-    const url = `${this.apiUplayURL}/users/update-coin-balance/${userId}`;
-    const params = { newCoinBalance: newBalance.toString() };
-
-    return this.http.put(url, null, { params });
+  updateCoinBalance(newBalance: number): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/update-coin-balance/${this.userId}`;
+        const params = { newCoinBalance: newBalance.toString() };
+        this.http.put(url, null, { params }).subscribe(
+          () => {
+            observer.next();
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
   }
+
+  getUserId(): Promise<void> {
+    return new Promise<void>((resolve) => {
+
+      const userData = localStorage.getItem('userData');
+  
+      if (userData) {
+        const user = JSON.parse(userData);
+        this.userId = user.id;
+        console.log('this.userId:', this.userId);
+      }
+  
+      resolve();
+    });
+}
 }

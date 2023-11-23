@@ -12,6 +12,7 @@ import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { GamesPageComponent } from '../games-page/components/games-page.component';
 import { RankingPageComponent } from '../ranking-page/ranking-page.component';
 import { ExchangePageComponent } from '../exchange-page/exchange-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,8 @@ import { ExchangePageComponent } from '../exchange-page/exchange-page.component'
   declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, RankingPageComponent, ExchangePageComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     HomePageRoutingModule,
     SharedModule
