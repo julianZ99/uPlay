@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/core/auth/auth-service/auth.service';
 export class LoginComponent {
 
     showAlert: boolean = false;
-    alertMessage: string = 'Verifica los datos ingresados';
+    alertMessage: string = 'Verify the data entered';
     loginForm: FormGroup;
 
     constructor(private router: Router, private authService: AuthService) {
@@ -55,6 +55,9 @@ export class LoginComponent {
               console.error('Login error:', error);
               this.loginForm.reset();
               this.showAlert = true;
+              setTimeout(() => {
+                this.showAlert = false;
+              }, 4000);
             }
           );
       }

@@ -38,7 +38,7 @@
 
               <div class="pt-1 mb-4">
                 <button class="btn btn-warning btn-lg btn-block" type="submit"
-                  (click)="navigateToMainPage()">Login</button>
+                  (click)="navigateToMainPage()" [disabled]="loginForm.invalid">Login</button>
               </div>
             </form>
 

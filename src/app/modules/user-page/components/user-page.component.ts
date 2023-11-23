@@ -16,8 +16,7 @@ export class UserPageComponent {
   alertMessage: string = '';
   showAlert: boolean = false;
 
-  constructor(private router: Router, private uplayService: UplayService) 
-  {
+  constructor(private router: Router, private uplayService: UplayService) {
     this.dataForm = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern(/^[\w',.\-]{4,25}$/)]),
       'lastname': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern(/^[\w',.\-]{4,25}$/)]),
@@ -31,15 +30,15 @@ export class UserPageComponent {
     this.getUserData();
   }
 
-  editProfile(){
+  editProfile() {
     const name = this.dataForm.get('name')?.value;
     const lastName = this.dataForm.get('lastname')?.value;
     const email = this.dataForm.get('email')?.value;
     const userName = this.dataForm.get('username')?.value;
     const phoneNumber = this.dataForm.get('phonenumber')?.value;
-   
 
-    const user = new UserFullData(name,lastName,userName,email,phoneNumber);
+
+    const user = new UserFullData(name, lastName, userName, email, phoneNumber);
     this.uplayService.updateUser(user)
       .then(() => {
         this.router.navigate(['/']);
@@ -48,11 +47,14 @@ export class UserPageComponent {
         console.error('Error en la solicitud:', error);
         this.getUserData();
         this.showAlert = true;
-        if(error.status === 409){
+        if (error.status === 409) {
           this.alertMessage = 'The username and/or email already exists. Try a different one please';
-        }else{
+        } else {
           this.alertMessage = 'There was a system failure, please try again later.';
         }
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 4000);
       });
   }
 
@@ -68,13 +70,18 @@ export class UserPageComponent {
       })
       .catch(error => {
         console.error('Error en la solicitud:', error);
+        this.showAlert = true;
+        this.alertMessage = 'There was a system failure, please try again later.';
+
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 4000);
       })
   }
 
-  navigateToHome(){
+  navigateToHome() {
     this.router.navigate(['/']);
   }
-
 
   get name() {
     return this.dataForm.get('name') as FormControl;

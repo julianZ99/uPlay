@@ -21,7 +21,7 @@
                                     <span *ngIf="name.errors?.['required']">
                                         The name is required.
                                     </span>
-                                    <span *ngIf="name.errors?.['minlength'] || lastname.errors?.['maxlengh']">
+                                    <span *ngIf="name.errors?.['minlength'] || name.errors?.['maxlength']">
                                         The name must contain between 4 and 25 characters.
                                     </span>
                                     <span *ngIf="name.errors?.['pattern']">
@@ -37,7 +37,7 @@
                                     <span *ngIf="lastname.errors?.['required']">
                                         The Last name is required.
                                     </span>
-                                    <span *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlengh']">
+                                    <span *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlength']">
                                         The last name must contain between 4 and 25 characters.
                                     </span>
                                     <span *ngIf="lastname.errors?.['pattern']">
@@ -82,7 +82,7 @@
                                     <span *ngIf="userName.errors?.['required']">
                                         The username is required.
                                     </span>
-                                    <span *ngIf="userName.errors?.['minlength'] || userName.errors?.['maxlenght']; ">
+                                    <span *ngIf="userName.errors?.['minlength'] || userName.errors?.['maxlength']; ">
                                         The username contain between 4 and 25 characters.
                                     </span>
                                     <span *ngIf="userName.errors?.['pattern']">
@@ -98,7 +98,7 @@
 
                             <div class="pt-1 mb-4">
                                 <button class="btn btn-warning btn-lg btn-block" type="submit"
-                                    >Edit profile</button>
+                                [disabled]="dataForm.invalid">Edit profile</button>
                             </div>
                         </form>
 
