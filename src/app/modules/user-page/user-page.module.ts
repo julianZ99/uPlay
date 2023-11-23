@@ -5,6 +5,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { UserPageRoutingModule } from './user-page-routing.module';
 
 import { UserPageComponent } from './components/user-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { UserPageComponent } from './components/user-page.component';
     CoreModule,
     UserPageRoutingModule, 
     SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class UserPageModule { }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
-import { User } from '../../models/user/user';
+import { User, UserFullData } from '../../models/user/user';
 import { Question } from '../../models/question/question';
 import { UserResgistration } from '../../models/userResgistration/user-resgistration';
 import { UserPassword } from '../../models/userPassword/user-password';
@@ -35,7 +35,7 @@ export class UplayService {
     });
   }
 
-  getQuestion(): Promise<Question[]>{
+  getQuestion(): Promise<Question[]> {
     const url = `${this.apiUplayURL}/questions/getQuestions`;
 
     return new Promise<any>((resolve, reject) => {
@@ -50,10 +50,10 @@ export class UplayService {
     });
   }
 
-  getUserQuestion(userEmail: string): Promise<Question>{
+  getUserQuestion(userEmail: string): Promise<Question> {
     const url = `${this.apiUplayURL}/questions/getUserQuestion`
-  
-    return new Promise<any>((resolve,reject) => {
+
+    return new Promise<any>((resolve, reject) => {
 
       this.http.post(url, userEmail).subscribe(
         (data) => {
@@ -66,10 +66,10 @@ export class UplayService {
     });
   }
 
-  modifyPassword(user: UserPassword): Promise<User>{
+  modifyPassword(user: UserPassword): Promise<User> {
     const url = `${this.apiUplayURL}/users/modifyPassword`;
 
-    return new Promise<any>((resolve,reject) => {
+    return new Promise<any>((resolve, reject) => {
       this.http.put(url, user).subscribe(
         (data) => {
           resolve(data);
@@ -126,20 +126,65 @@ export class UplayService {
         })
       );
   }
-  
+
 
   getUserId(): Promise<void> {
     return new Promise<void>((resolve) => {
 
       const userData = localStorage.getItem('userData');
-  
+
       if (userData) {
         const user = JSON.parse(userData);
         this.userId = user.id;
         console.log('this.userId:', this.userId);
       }
-  
+
       resolve();
     });
-}
+  }
+
+  updateUser(user: UserFullData): Promise<User> {
+    return new Promise<any>((resolve, reject) => {
+      this.getUserId()
+        .then(() => {
+          const url = `${this.apiUplayURL}/users/update-user/${this.userId}`;
+          this.http.put(url, user).subscribe(
+            (data) => {
+              resolve(data);
+            },
+            (error) => {
+              console.log(error);
+              reject(error);
+            }
+          );
+        })
+        .catch(() => {
+          reject();
+        })
+    });
+  }
+
+  getUserData():Promise<UserFullData>{
+    return new Promise<any>((resolve, reject) => {
+      this.getUserId()
+      .then(() => {
+        const url = `${this.apiUplayURL}/users/data/${this.userId}`;
+        this.http.get<any>(url).subscribe(
+          (data) => {
+            if(data){
+              resolve(data);
+            }
+            reject(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      })
+      .catch(() => {
+        reject();
+      });
+    });
+  }
+
 }
