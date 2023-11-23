@@ -9,6 +9,10 @@
   margin-bottom: 20px;
 }
 
+.text-hover{
+  cursor: pointer;
+}
+
 .click-container{
   cursor: pointer;
 }
