@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 import { User } from '../../models/user/user';
 import { Question } from '../../models/question/question';
 import { UserResgistration } from '../../models/userResgistration/user-resgistration';
 import { UserPassword } from '../../models/userPassword/user-password';
-
+import { ExchangeRequest } from '../../models/ExchangeRequest/exchange-request';
 
 
 @Injectable({
@@ -115,6 +115,18 @@ export class UplayService {
       });
     });
   }
+
+  exchangeCoins(exchangeRequest: ExchangeRequest): Observable<string> {
+    const url = `${this.apiUplayURL}/users/exchange-coins`;
+    return this.http.post(url, exchangeRequest, { responseType: 'text' })
+      .pipe(
+        catchError(error => {
+          console.error('Exchange Error:', error);
+          throw error;
+        })
+      );
+  }
+  
 
   getUserId(): Promise<void> {
     return new Promise<void>((resolve) => {

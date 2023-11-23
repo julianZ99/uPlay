@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 import { CoingeckoService } from 'src/app/core/services/coingecko/coingecko.service';
 import { DolaritoService } from 'src/app/core/services/dolarito/dolarito.service';
+import { ExchangeRequest } from 'src/app/core/models/ExchangeRequest/exchange-request';
 
 @Component({
   selector: 'app-exchange',
@@ -29,7 +30,7 @@ export class ExchangePageComponent implements OnInit {
     private authGuard: AuthGuard,
     private dolaritoService: DolaritoService,
     private coingeckoService: CoingeckoService,
-    private uplayService: UplayService
+    private uplayService: UplayService,
   ) {}
 
   ngOnInit() {
@@ -51,9 +52,11 @@ export class ExchangePageComponent implements OnInit {
         this.coinBalance = balance;
         console.log(this.coinBalance);
 
-        this.exchangeForm
-          .get('inputValue')
-          ?.setValidators([Validators.required, Validators.pattern(/^[0-9]+$/), Validators.max(this.coinBalance)]);
+        this.setValidatorsForInput();
+
+        this.exchangeForm.get('inputValue')?.valueChanges.subscribe(() => {
+          this.updateCardTitles();
+        });
       });
     }
   }
@@ -109,5 +112,71 @@ export class ExchangePageComponent implements OnInit {
     const modal = document.querySelector('.modal');
     modal?.classList.toggle('show');
   }
+
+  exchange2btc(){
+    this.performCoinExchange("bitcoin", this.bitcoinValue, this.btctoExchange);
+  }
+
+  exchange2eth(){
+    this.performCoinExchange("ethereum", this.ethereumValue, this.ethtoExchange);
+  }
+
+  exchange2xmr(){
+    this.performCoinExchange("monero", this.moneroValue, this.xmrtoExchange);
+  }
+
+  performCoinExchange(crypto: string, cryptoValue: number, convertedAmount: number) {
+    const userData = localStorage.getItem('userData');
+    if(userData){
+    const user = JSON.parse(userData);
+    const exchangeRequest: ExchangeRequest = {
+      userId: user.id,
+      amount: this.inputValue,
+      cryptocurrency: crypto,
+      currentCryptoValue: cryptoValue,
+      currentDollarBlueValue: this.dolarBlueValueArs,
+      cryptoAmount: convertedAmount
+    };
+
+ 
+    this.uplayService.exchangeCoins(exchangeRequest).subscribe(
+      (response) => {
+        console.log('Coin exchange successful:', response);
+      },
+      (error) => {
+        console.error('Coin exchange failed:', error);
+      }
+    );
+
+    this.uplayService.exchangeCoins(exchangeRequest).subscribe(
+      (response) => {
+        console.log('Coin exchange successful:', response);
+        const newBalance = this.coinBalance - this.inputValue;
+        this.uplayService.updateCoinBalance(newBalance).subscribe(
+          () => {
+            console.log('UTN coin balance updated successfully');
+            this.coinBalance = newBalance;
+            this.setValidatorsForInput();
+            this.exchangeForm.reset();
+          },
+          (error) => {
+            console.error('Failed to update UTN coin balance:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Coin exchange failed:', error);
+      }
+    );
+  }
+}
+
+private setValidatorsForInput() {
+  this.exchangeForm
+    .get('inputValue')
+    ?.setValidators([Validators.required, Validators.pattern(/^[0-9]+$/), Validators.max(this.coinBalance)]);
+  this.exchangeForm.get('inputValue')?.updateValueAndValidity();
+}
+
 }
 

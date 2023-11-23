@@ -36,7 +36,7 @@
                     <h4 class="card-title">{{ btctoExchange | number: '1.2-10'}}btc</h4>
                 </div>
                 <button type="button" class="btn btn-warning btn-fixed-height"
-                    [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Bitcoin!</button>
+                    [disabled]="exchangeForm.get('inputValue')?.invalid" (click)="exchange2btc()">Exchange to Bitcoin!</button>
             </div>
             <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
                 <div class="card-header">to <strong>Monero</strong></div>
@@ -44,14 +44,14 @@
                     <h4 class="card-title">{{ xmrtoExchange | number: '1.2-10'}}xmr</h4>
                 </div>
                 <button type="button" class="btn btn-warning btn-monero btn-fixed-height"
-                    [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Monero!</button>
+                    [disabled]="exchangeForm.get('inputValue')?.invalid" (click)="exchange2xmr()">Exchange to Monero!</button>
             </div>
             <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
                 <div class="card-header">to <strong>Ethereum</strong></div>
                 <div class="card-body">
                     <h4 class="card-title">{{ ethtoExchange | number: '1.2-10'}}eth</h4>
                 </div>
-                <button type="button" class="btn btn-info btn-fixed-height"
+                <button type="button" class="btn btn-info btn-fixed-height" (click)="exchange2eth()"
                     [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Ethereum!</button>
             </div>
         </div>
