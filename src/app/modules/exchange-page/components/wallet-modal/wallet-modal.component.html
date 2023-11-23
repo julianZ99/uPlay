@@ -1,0 +1,26 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Your Wallet</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body bg-dark">
+        <div class="mb-3 card text-white bg-primary">
+            UTNcoins: {{userWallet.utncoinAmount}}utn
+        </div>
+        <div class="mb-3 card text-white bg-warning">
+            bitcoins: {{userWallet.bitcoinAmount | number: '1.2-5'}}btc
+        </div>
+        <div class="mb-3 card text-white bg-secondary">
+            monero: {{userWallet.moneroAmount | number: '1.2-5'}}xrm
+        </div>
+        <div class="mb-3 card text-white bg-info" >
+            ethereum: {{userWallet.ethereumAmount | number: '1.2-5'}}eth
+        </div>
+    </div>
+</ng-template>
+
+
+<i class="bi bi-currency-exchange" (click)="open(content)"></i>
+
+
+<pre>{{ closeResult }}</pre>

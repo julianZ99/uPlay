@@ -19,8 +19,11 @@
                                     <span *ngIf="name.errors?.['required']">
                                         The name is required.
                                     </span>
-                                    <span *ngIf="name.errors?.['minlength']">
-                                        The name must be greater than 4 characters.
+                                    <span *ngIf="name.errors?.['minlength'] || name.errors?.['maxlength']">
+                                        The name must contain between 4 and 25 characters.
+                                    </span>
+                                    <span *ngIf="name.errors?.['pattern']">
+                                        The name must contain only letters.
                                     </span>
                                 </div>
 
@@ -32,8 +35,11 @@
                                     <span *ngIf="lastname.errors?.['required']">
                                         The Last name is required.
                                     </span>
-                                    <span *ngIf="lastname.errors?.['minlength']">
-                                        The Last name must be greater than 4 characters.
+                                    <span *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlength']">
+                                        The last name must contain between 4 and 25 characters.
+                                    </span>
+                                    <span *ngIf="lastname.errors?.['pattern']">
+                                        The last name must contain only letters.
                                     </span>
                                 </div>
 
@@ -57,8 +63,12 @@
                                     <span *ngIf="phoneNumber.errors?.['required']">
                                         The phone number is required.
                                     </span>
-                                    <span *ngIf="phoneNumber.errors?.['minlength'] || phoneNumber.errors?.['maxlength']">
+                                    <span
+                                        *ngIf="phoneNumber.errors?.['minlength'] || phoneNumber.errors?.['maxlength']">
                                         The phone number must be 10 digits.
+                                    </span>
+                                    <span *ngIf="phoneNumber.errors?.['pattern']">
+                                        The phone number only has to contain numbers.
                                     </span>
                                 </div>
 
@@ -70,8 +80,11 @@
                                     <span *ngIf="userName.errors?.['required']">
                                         The username is required.
                                     </span>
-                                    <span *ngIf="userName.errors?.['minlength']">
-                                        The username must be greater than 4 characters.
+                                    <span *ngIf="userName.errors?.['minlength'] || userName.errors?.['maxlength']; ">
+                                        The username contain between 4 and 25 characters.
+                                    </span>
+                                    <span *ngIf="userName.errors?.['pattern']">
+                                        The username must contain only letters.
                                     </span>
                                 </div>
 

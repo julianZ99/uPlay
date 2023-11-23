@@ -1,6 +1,32 @@
-.nav-scroller {
-    margin-top: 60px;
-}
-html, body {
-    overflow: hidden;
+.gradient-custom {
+    background: linear-gradient(-45deg, #ee7752, #e7c920, #9d23d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+  }
+  
+  .form-control,
+  .alert {
+    margin-bottom: 20px;
+  }
+  
+  .click-container{
+    cursor: pointer;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .btn {
+    width: 100%;
   }

@@ -1,0 +1,68 @@
+<div class="exchange-container">
+    <div class="icon-container">
+        <div class="component-container">
+          <app-about-modal></app-about-modal>
+        </div>
+        <div class="component-container">
+          <app-transaction-page></app-transaction-page>
+        </div>
+        <div class="component-container">
+            <app-wallet-modal></app-wallet-modal>
+          </div>
+      </div>
+      
+    <div class="container-fluid">
+        <div class="crypto-cards">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <div class="card-header">Your Balance <strong>{{ coinBalance }}</strong><img
+                            src="assets/utncoin.svg" height="15px" alt="utn"></div>
+                    <form [formGroup]="exchangeForm" class="form-group">
+                        <label for="inputLarge">Amount to exchange</label>
+                        <input class="form-control form-control-lg"
+                            [class.is-invalid]="exchangeForm.get('inputValue')?.invalid && exchangeForm.get('inputValue')?.dirty"
+                            type="number" id="inputLarge" formControlName="inputValue">
+                        <div *ngIf="exchangeForm.get('inputValue')?.invalid && exchangeForm.get('inputValue')?.dirty"
+                            class="invalid-feedback">
+                            <div *ngIf="exchangeForm.get('inputValue')?.hasError('required')">A Numerical value is
+                                required.
+                            </div>
+                            <div *ngIf="exchangeForm.get('inputValue')?.hasError('pattern')">Please enter a valid
+                                numerical
+                                value.</div>
+                            <div *ngIf="exchangeForm.get('inputValue')?.hasError('max')">
+                                Insufficient funds. Your current balance is {{ coinBalance }}.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="crypto-cards">
+            <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+                <div class="card-header">to <strong>Bitcoin</strong></div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ btctoExchange | number: '1.2-10'}}btc</h4>
+                </div>
+                <button type="button" class="btn btn-warning btn-fixed-height"
+                    [disabled]="exchangeForm.get('inputValue')?.invalid" (click)="exchange2btc()">Exchange to Bitcoin!</button>
+            </div>
+            <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+                <div class="card-header">to <strong>Monero</strong></div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ xmrtoExchange | number: '1.2-10'}}xmr</h4>
+                </div>
+                <button type="button" class="btn btn-warning btn-monero btn-fixed-height"
+                    [disabled]="exchangeForm.get('inputValue')?.invalid" (click)="exchange2xmr()">Exchange to Monero!</button>
+            </div>
+            <div class="card crypto-card text-white bg-dark mb-3" style="max-width: 20rem;">
+                <div class="card-header">to <strong>Ethereum</strong></div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ ethtoExchange | number: '1.2-10'}}eth</h4>
+                </div>
+                <button type="button" class="btn btn-info btn-fixed-height" (click)="exchange2eth()"
+                    [disabled]="exchangeForm.get('inputValue')?.invalid">Exchange to Ethereum!</button>
+            </div>
+        </div>
+    </div>
+</div>

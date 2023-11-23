@@ -1,0 +1,42 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Transaction History</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body bg-dark">
+      <div class="table-container">
+              <table class="table table-dark">
+                  <thead>
+                      <tr>
+                          <th class="w-auto">ID</th>
+                          <th class="w-40">Date</th>
+                          <th class="w-auto">Crypto</th>
+                          <th class="w-auto">Value</th>
+                          <th class="w-auto">UTNc</th>
+                          <th class="w-auto">Obtained</th>
+                      </tr>
+                  </thead>
+                  <tbody class="scrollable-body">
+                      <tr *ngFor="let transaction of transactions">
+                          <td>{{ transaction.id }}</td>
+                          <td>{{ transaction.Date | date }}</td>
+                          <td>{{ transaction.cryptocurrency }}</td>
+                          <td>{{ transaction.currentCryptoValue }}</td>
+                          <td>{{ transaction.amount | number: '1.0-2' }}</td>
+                          <td>{{ transaction.cryptoAmount | number: '1.2-5' }}</td>
+                          <td></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+</ng-template>
+
+
+  
+
+
+<i class="bi bi-calendar-event" (click)="open(content)"></i>
+
+
+<pre>{{ closeResult }}</pre>

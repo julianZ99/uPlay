@@ -3,7 +3,6 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Question } from 'src/app/core/models/question/question';
 import { UserPassword } from 'src/app/core/models/userPassword/user-password';
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 
 @Component({
@@ -16,6 +15,9 @@ export class ForgotPaswordComponent {
   public question: Question = new Question(0, '');
   public existsQuestion: Boolean = false;
   private userEmail: string = '';
+
+  alertMessage: string = '';
+  showAlert: boolean = false;
 
   forgotPasswordForm: FormGroup;
   forgotPasswordAditionalForm: FormGroup;
@@ -30,7 +32,7 @@ export class ForgotPaswordComponent {
       'answer': new FormControl('', [Validators.required]),
       'newPassword': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'confirmPassword': new FormControl('', [Validators.required, Validators.minLength(4),
-        this.passwordMatchValidator.bind(this)])
+      this.passwordMatchValidator.bind(this)])
     });
 
     this.newPasswordControl = this.forgotPasswordAditionalForm.get('newPassword') || new FormControl('');
@@ -63,26 +65,41 @@ export class ForgotPaswordComponent {
       })
       .catch((error: any) => {
         console.error('Error en la solicitud:', error);
+        this.showAlert = true;
+        this.alertMessage = 'There was a system failure, please try again later.';
+
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 4000);
       })
   }
 
-  modifyPassword(){
+  modifyPassword() {
     const questionId = this.question.id;
     const email = this.userEmail;
     const answer = this.forgotPasswordAditionalForm.get('answer')?.value;
     const newPassword = this.forgotPasswordAditionalForm.get('newPassword')?.value;
 
-    const modifyUser = new UserPassword(email, questionId,answer,newPassword);
+    const modifyUser = new UserPassword(email, questionId, answer, newPassword);
 
     this.uplayService.modifyPassword(modifyUser)
-    .then((response) => {
-      console.log(response);
-      this.router.navigate(['/']);
-    })
-    .catch((error: any) => {
-      console.error('Error en la solicitud:', error);
-      
-    })
+      .then((response) => {
+        console.log(response);
+        this.router.navigate(['/']);
+      })
+      .catch((error: any) => {
+        console.error('Error en la solicitud:', error);
+        this.showAlert = true;
+        if(error === 404){
+          this.alertMessage = 'Check the answer entered.';
+        }else{
+          this.alertMessage = 'There was a system failure, please try again later.';
+        }
+  
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 4000);
+      })
   }
 
   navigateToHome() {
@@ -93,15 +110,15 @@ export class ForgotPaswordComponent {
     return this.forgotPasswordForm.get('email') as FormControl;
   }
 
-  get answer(){
+  get answer() {
     return this.forgotPasswordAditionalForm.get('answer') as FormControl;
   }
 
-  get password(){
+  get password() {
     return this.forgotPasswordAditionalForm.get('newPassword') as FormControl;
   }
 
-  get confirmPassword(){
+  get confirmPassword() {
     return this.forgotPasswordAditionalForm.get('confirmPassword') as FormControl;
   }
 

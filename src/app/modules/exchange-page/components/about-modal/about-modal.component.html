@@ -1,0 +1,25 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Exchange Page</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            Welcome to our Exchange Page, where you have the chance to seamlessly trade UTNcoins for various
+            cryptocurrencies.
+        </div>
+        <div class="mb-3">
+            Each UTNcoin<img src="assets/utncoin.svg" height="15px" alt="utn"> holds a value equivalent to one <img
+                src="assets/argentina.png" height="15px" alt="utn">ARS, ensuring a straightforward exchange process.
+        </div>
+        <div class="mb-3">
+            Our platform automatically calculates real-time cryptocurrency prices, providing you with a hassle-free
+            experience. </div>
+    </div>
+</ng-template>
+
+
+<i class="bi bi-question-circle" (click)="open(content)"></i>
+
+
+<pre>{{ closeResult }}</pre>

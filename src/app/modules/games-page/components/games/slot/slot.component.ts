@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
-import { AuthStatusService } from 'src/app/core/services/auth-status/auth-status.service';
+import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 import { UplayService } from 'src/app/core/services/uplay/uplay.service';
 import { CoinBalanceService } from 'src/app/core/services/coin-balance/coin-balance.service';
 import { symbols } from './symbols';
@@ -14,7 +14,7 @@ import { symbols } from './symbols';
 
 })
 
-export class SlotComponent implements OnInit, OnDestroy {
+export class SlotComponent implements OnInit{
   authenticatedUser: any | null;
   coinBalance: number = 0;
   netCredits:any;
@@ -65,36 +65,28 @@ export class SlotComponent implements OnInit, OnDestroy {
 
   symbolReel: symbols[] = [this.symbol1, this.symbol2, this.symbol3, this.symbol4, this.symbol5, this.symbol6];
 
-  private authSubscription: Subscription = new Subscription();
+ 
 
   constructor(
-    private authStatusService: AuthStatusService,
     private uplayService: UplayService,
     private coinBalanceService: CoinBalanceService,
+    private authGuard: AuthGuard
   ) { }
-
-
 
   ngOnInit() {
     this.currentSym1 = this.symbolReel[2];
     this.currentSym2 = this.symbolReel[4];
     this.currentSym3 = this.symbolReel[5]; 
     console.log("slots init");
-    this.authSubscription = this.authStatusService.getAuthenticatedUser().subscribe((user) => {
-      this.authenticatedUser = user;
-      if (user) {
-        this.uplayService.getCoinBalance(user.id).subscribe((balance) => {
-          this.coinBalance = balance;
-          console.log(this.coinBalance);
-          this.coinBalanceService.updateCoinBalance(this.coinBalance);
-        });
-      }
-    });
+    if (this.authGuard.canActivate()) {
+      this.uplayService.getCoinBalance().subscribe((balance) => {
+        this.coinBalance = balance;
+        console.log(this.coinBalance);
+        this.coinBalanceService.updateCoinBalance(this.coinBalance);
+      })
   }
+}
 
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
-  }
 
   stopSpinning() {
     clearInterval(this.stopSpin);
@@ -184,7 +176,7 @@ export class SlotComponent implements OnInit, OnDestroy {
     //update coins view
     this.coinBalanceService.updateCoinBalance(this.coinBalance);
     //carga db con coins
-    this.uplayService.updateCoinBalance(this.authenticatedUser.id, this.coinBalance).subscribe(
+    this.uplayService.updateCoinBalance(this.coinBalance).subscribe(
       () => {
         console.log('Coin balance updated successfully.');
       },

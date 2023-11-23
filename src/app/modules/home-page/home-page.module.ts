@@ -10,16 +10,21 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { GamesPageComponent } from '../games-page/components/games-page.component';
-import { RankingPageComponent } from './components/ranking-page/ranking-page.component';
+import { TransactionPageComponent } from '../exchange-page/components/transaction-page/transaction-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExchangePageModule } from '../exchange-page/exchange-page.module';
 
 
 
 @NgModule({
-  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, RankingPageComponent],
+  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     HomePageRoutingModule,
+    ExchangePageModule,
     SharedModule
   ],
   providers: [SharedCoinService],
