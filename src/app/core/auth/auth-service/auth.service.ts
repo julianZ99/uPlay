@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
+import { identifierName } from '@angular/compiler';
 
 interface LoginResponse {
   Header: string;
@@ -57,6 +58,18 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  getUsername(): string {
+
+    const userData = localStorage.getItem('userData');
+    let userName = 'username'
+    if (userData) {
+      const user = JSON.parse(userData);
+      userName = user.username;
+      console.log('this.username:', userName);
+    }
+    return userName;
   }
 
   getAuthorizationHeader(): HttpHeaders {

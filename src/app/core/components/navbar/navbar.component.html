@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark nav">
   <div class="container-fluid d-flex justify-content-between">
     <div class="d-flex align-items-center">
       <a class="navbar-brand" (click)="navigateToHome()">
@@ -6,13 +6,25 @@
       </a>
 
       <div *ngIf="isLoggedIn" class="d-flex flex-row align-items-center navbar-nav">
-        <a class="nav-item nav-link ms-3" (click)="navigateToCoins()">Coins</a>
-        <a class="nav-item nav-link ms-3" (click)="navigateToGames()">Juegos</a>
-        <a class="nav-item nav-link ms-3" (click)="navigateToRankings()">Ranking</a>
-        <a class="nav-item nav-link ms-3" (click)="navigateToExchange()">Exchange</a>
+        <a class="nav-item nav-link ms-3" (click)="navigateToCoins()">
+          <i class="bi bi-coin"></i> Coins
+        </a>
+        <a class="nav-item nav-link ms-3" (click)="navigateToGames()">
+          <i class="bi bi-controller"></i> Games
+        </a>
+        <a class="nav-item nav-link ms-3" (click)="navigateToExchange()">
+          <i class="bi bi-cash-coin"></i> Exchange
+        </a>
       </div>
     </div>
-    <button class="btn btn-warning" *ngIf="isLoggedIn" (click)="logout()">logout</button>
-    <button class="btn btn-warning" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
+    <div  *ngIf="isLoggedIn" ngbDropdown class="btn-group" role="group" [placement]="'botom-left'" class="custom-button">
+      <button id="btnGroupDrop3" ngbDropdownToggle type="button" class="btn btn-info" aria-haspopup="true" aria-expanded="false">{{username}}</button>
+      <div ngbDropdownMenu aria-labelledby="btnGroupDrop3" >
+        <a ngbDropdownItem class="dropdown-item-hover" (click)="navigateToUserPage()">Edit Profile</a>
+        <a ngbDropdownItem class="dropdown-item-hover" (click)="logout()">Logout</a>
+      </div>
+    </div>
+
+    <button class="btn btn-warning custom-button" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Login</button>
   </div>
 </nav>

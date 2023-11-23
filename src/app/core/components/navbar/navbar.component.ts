@@ -18,10 +18,14 @@ export class NavbarComponent {
   isLoggedIn: boolean = false;
   isLoginRoute: boolean = false;
   currentRoute: string = '';
-
+  username!: string;
 
   ngOnInit() {
     this.checkLoginStatus();
+    if(this.isLoggedIn)
+    {
+      this.username=this.authService.getUsername();
+    }
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = this.router.url;
@@ -40,6 +44,10 @@ export class NavbarComponent {
     this.router.navigate(['/registration']);
   }
 
+  navigateToUserPage() {
+    this.router.navigate(['/user-page']);
+  }
+
   navigateToHome() {
     this.router.navigate(['/']);
   }
@@ -50,10 +58,6 @@ export class NavbarComponent {
 
   navigateToGames() {
     this.router.navigate(['/games']);
-  }
-
-  navigateToRankings() {
-    this.router.navigate(['/ranking']);
   }
 
   navigateToExchange() {
