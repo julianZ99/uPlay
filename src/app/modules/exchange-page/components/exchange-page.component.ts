@@ -137,7 +137,7 @@ export class ExchangePageComponent implements OnInit {
       currentDollarBlueValue: this.dolarBlueValueArs,
       cryptoAmount: convertedAmount
     };
-
+    console.log(exchangeRequest);
     this.uplayService.exchangeCoins(exchangeRequest).subscribe(
       (response) => {
         console.log('Coin exchange successful:', response);

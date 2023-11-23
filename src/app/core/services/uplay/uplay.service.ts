@@ -7,6 +7,7 @@ import { UserResgistration } from '../../models/userResgistration/user-resgistra
 import { UserPassword } from '../../models/userPassword/user-password';
 import { ExchangeRequest } from '../../models/ExchangeRequest/exchange-request';
 import { Transaction } from '../../models/transaction/transaction';
+import { Wallet } from '../../models/wallet/wallet';
 
 
 @Injectable({
@@ -145,6 +146,23 @@ export class UplayService {
       });
     });
   }
+
+  getUserWallet(): Observable<Wallet> {
+    return new Observable<Wallet>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/wallet/${this.userId}`;
+        this.http.get<Wallet>(url).subscribe(
+          (data) => {
+            observer.next(data);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
+  }  
 
   getUserId(): Promise<void> {
     return new Promise<void>((resolve) => {
