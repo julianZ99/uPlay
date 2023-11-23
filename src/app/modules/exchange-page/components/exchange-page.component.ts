@@ -137,32 +137,25 @@ export class ExchangePageComponent implements OnInit {
       currentDollarBlueValue: this.dolarBlueValueArs,
       cryptoAmount: convertedAmount
     };
-
- 
-    this.uplayService.exchangeCoins(exchangeRequest).subscribe(
-      (response) => {
-        console.log('Coin exchange successful:', response);
-      },
-      (error) => {
-        console.error('Coin exchange failed:', error);
-      }
-    );
-
+    console.log(exchangeRequest);
     this.uplayService.exchangeCoins(exchangeRequest).subscribe(
       (response) => {
         console.log('Coin exchange successful:', response);
         const newBalance = this.coinBalance - this.inputValue;
-        this.uplayService.updateCoinBalance(newBalance).subscribe(
-          () => {
-            console.log('UTN coin balance updated successfully');
-            this.coinBalance = newBalance;
-            this.setValidatorsForInput();
-            this.exchangeForm.reset();
-          },
-          (error) => {
-            console.error('Failed to update UTN coin balance:', error);
-          }
-        );
+    
+        if (!isNaN(newBalance) && newBalance >= 0) {
+          this.uplayService.updateCoinBalance(newBalance).subscribe(
+            () => {
+              console.log('UTN coin balance updated successfully');
+              this.coinBalance = newBalance;
+              this.setValidatorsForInput();
+              this.exchangeForm.reset();
+            },
+            (error) => {
+              console.error('Failed to update UTN coin balance:', error);
+            }
+          );
+        }
       },
       (error) => {
         console.error('Coin exchange failed:', error);

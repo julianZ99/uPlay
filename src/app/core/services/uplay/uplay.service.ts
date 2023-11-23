@@ -6,6 +6,8 @@ import { Question } from '../../models/question/question';
 import { UserResgistration } from '../../models/userResgistration/user-resgistration';
 import { UserPassword } from '../../models/userPassword/user-password';
 import { ExchangeRequest } from '../../models/ExchangeRequest/exchange-request';
+import { Transaction } from '../../models/transaction/transaction';
+import { Wallet } from '../../models/wallet/wallet';
 
 
 @Injectable({
@@ -118,6 +120,7 @@ export class UplayService {
 
   exchangeCoins(exchangeRequest: ExchangeRequest): Observable<string> {
     const url = `${this.apiUplayURL}/users/exchange-coins`;
+    console.log('Calling exchangeCoins method');
     return this.http.post(url, exchangeRequest, { responseType: 'text' })
       .pipe(
         catchError(error => {
@@ -127,6 +130,39 @@ export class UplayService {
       );
   }
 
+  getUserTransactions(): Observable<Transaction[]> {
+    return new Observable<Transaction[]>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/transactions/${this.userId}`;
+        this.http.get<Transaction[]>(url).subscribe(
+          (data) => {
+            observer.next(data);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
+  }
+
+  getUserWallet(): Observable<Wallet> {
+    return new Observable<Wallet>((observer) => {
+      this.getUserId().then(() => {
+        const url = `${this.apiUplayURL}/users/wallet/${this.userId}`;
+        this.http.get<Wallet>(url).subscribe(
+          (data) => {
+            observer.next(data);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    });
+  }  
 
   getUserId(): Promise<void> {
     return new Promise<void>((resolve) => {

@@ -1,0 +1,43 @@
+.bi {
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.table-container {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    width: fit-content;
+}
+
+thead {
+    flex: 0 0 auto;
+}
+
+.scrollable-body {
+    flex: 1;
+    display: block;
+    overflow-y: scroll;
+    max-height: 100vh;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+}
+
+tr {
+    display: table;
+    width: 100%;
+}
+
+.scrollable-body::-webkit-scrollbar {
+    width: 0px;
+}
+
+.scrollable-body::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.scrollable-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
