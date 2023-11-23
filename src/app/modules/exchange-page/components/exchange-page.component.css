@@ -5,6 +5,11 @@
 .icon-container {
   padding-left: 40px;
   margin-top: 20px;
+  display: flex;
+}
+
+.component-container {
+  margin-right: 10px; 
 }
 
 .container-fluid {
