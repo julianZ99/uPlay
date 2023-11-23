@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RankingPageComponent } from './ranking-page.component';
+import { TransactionPageComponent } from './transaction-page.component';
 
 describe('RankingPageComponent', () => {
-  let component: RankingPageComponent;
-  let fixture: ComponentFixture<RankingPageComponent>;
+  let component: TransactionPageComponent;
+  let fixture: ComponentFixture<TransactionPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RankingPageComponent]
+      declarations: [TransactionPageComponent]
     });
-    fixture = TestBed.createComponent(RankingPageComponent);
+    fixture = TestBed.createComponent(TransactionPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

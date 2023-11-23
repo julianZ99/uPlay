@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CoinPageComponent } from '../coin-page/coin-page.component';
-import { RankingPageComponent } from '../ranking-page/ranking-page.component';
+import { RankingPageComponent } from '../transaction-page/transaction-page.component';
 import { ExchangePageComponent } from '../exchange-page/components/exchange-page.component';
 import { AuthGuard } from 'src/app/core/auth/auth-guard/auth-guard.service';
 

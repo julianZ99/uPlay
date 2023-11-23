@@ -10,15 +10,14 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { CoinPageComponent } from '../coin-page/coin-page.component';
 import { GamesPageComponent } from '../games-page/components/games-page.component';
-import { RankingPageComponent } from '../ranking-page/ranking-page.component';
-import { ExchangePageComponent } from '../exchange-page/components/exchange-page.component';
+import { TransactionPageComponent } from '../transaction-page/transaction-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExchangePageModule } from '../exchange-page/exchange-page.module';
 
 
 
 @NgModule({
-  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, RankingPageComponent],
+  declarations: [HomePageComponent, AnimationComponent, CoinPageComponent, GamesPageComponent, TransactionPageComponent],
   imports: [
     CommonModule,
     FormsModule,
