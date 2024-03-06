@@ -1,27 +1,14 @@
 # uPlay
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+Trabajo final de la materia Laboratorio de Computación IV de la carrera Tecnicatura Universitaria en Programación.  
 
-## Development server
+  Este proyecto tiene como misión desarrollar una aplicación utilizando el framework Angular, esta le debe brindar a los usuarios información sobre criptomonedas, integrando una API REST. Además, debe proporcionar a los usuarios registrados un espacio donde puedan explorar y utilizar funciones relacionadas con criptomonedas para ampliar su experiencia.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Frontend:
+  Angular: La interfaz de usuario se construye utilizando Angular, un framework de desarrollo web de código abierto mantenido por Google. Angular permite la creación de SPAs y ofrece una estructura modular para organizar el código.
+  Bootstrap: Se utiliza Bootstrap para la maquetación y diseño responsivo de la interfaz. Bootstrap proporciona componentes y estilos predefinidos que agilizan el desarrollo.
+# Backend:
+  Spring Boot: El backend de la aplicación se implementa con Spring Boot, un framework de desarrollo de aplicaciones Java que simplifica la creación de servicios RESTful. Spring Boot facilita la configuración, desarrollo y despliegue de aplicaciones Java.
+  H2 Database: H2 es un sistema de gestión de bases de datos relacional en memoria que se utiliza para el almacenamiento de datos. Lo elegimos ya que es una opción ligera y conveniente para entornos de desarrollo y pruebas.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
