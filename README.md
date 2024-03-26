@@ -4,6 +4,10 @@ Trabajo final de la materia Laboratorio de Computación IV de la carrera Tecnica
 
   Este proyecto tiene como misión desarrollar una aplicación utilizando el framework Angular, esta le debe brindar a los usuarios información sobre criptomonedas, integrando una API REST. Además, debe proporcionar a los usuarios registrados un espacio donde puedan explorar y utilizar funciones relacionadas con criptomonedas para ampliar su experiencia.
 
+## APIs utilizadas:
+  CoinGecko: https://www.coingecko.com/
+  Dolarito: https://www.dolarito.ar/
+
 ## Frontend:
 https://github.com/julianZ99/uPlay
 
