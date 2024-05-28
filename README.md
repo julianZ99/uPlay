@@ -1,4 +1,5 @@
 # uPlay
+<img src='./src/assets/uplay.svg' width='100%' >
 
 Trabajo final de la materia Laboratorio de Computación IV de la carrera Tecnicatura Universitaria en Programación.  
 
@@ -24,4 +25,11 @@ El backend de la aplicación se implementa con Spring Boot, un framework de desa
 ###  H2 Database:
 H2 es un sistema de gestión de bases de datos relacional en memoria que se utiliza para el almacenamiento de datos. Lo elegimos ya que es una opción ligera y conveniente para entornos de desarrollo y pruebas.
 
+## Landing Page:
 <img src='./src/assets/uplayCoins.png' width='100%' >
+
+## Login:
+<img src='./src/assets/uplayLogin.png' width='100%' >
+
+## Exchange:
+<img src='./src/assets/uplayExchange.png' width='100%' >
