@@ -24,4 +24,4 @@ El backend de la aplicación se implementa con Spring Boot, un framework de desa
 ###  H2 Database:
 H2 es un sistema de gestión de bases de datos relacional en memoria que se utiliza para el almacenamiento de datos. Lo elegimos ya que es una opción ligera y conveniente para entornos de desarrollo y pruebas.
 
-
+![Coins Details](/src/assets/uplayCloins.png)
